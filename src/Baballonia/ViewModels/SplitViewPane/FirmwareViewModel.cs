@@ -178,7 +178,8 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
     [RelayCommand]
     private async Task SelectSerialPort()
     {
-        if (IsDeviceSelectionPresent)
+        // No, 'openiristracker' is not a valid COM object or device path
+        if (IsDeviceSelectionPresent && CanConnect(SelectedSerialPort!))
         {
             // If we haven't already refreshed, create the new firmware session for the
             // Manually typed in tracker
@@ -190,25 +191,49 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
                 _firmwareSessions.Add(SelectedSerialPort!, s);
             }
 
-            var session = _firmwareSessions[SelectedSerialPort!];
-            // for legacy only
-            if (session.Version < new Version(0, 0, 1))
+            if (_firmwareSessions.TryGetValue(SelectedSerialPort!, out var session))
             {
-                var res = await TrySendCommandAsync(new FirmwareRequests.SetPausedRequest(true),
-                    TimeSpan.FromSeconds(5));
-                IsValidDeviceSelected = res.IsSuccess;
+                if (session == null)
+                {
+                    IsValidDeviceSelected = false;
+                }
+                else if (session.Version < new Version(0, 0, 1))      // open v1 device. v1 devices do not report version, but they respond to commands
+                {
+                    var res = await TrySendCommandAsync(new FirmwareRequests.SetPausedRequest(true),
+                        TimeSpan.FromSeconds(5));
+                    IsValidDeviceSelected = res.IsSuccess; 
+                }
+                else if (session.Version > new Version(0, 2, 0)) // open v2 device. v2 devices report version and respond to commands
+                {
+                    IsValidDeviceSelected = true;
+                }
+                else
+                {
+                    IsValidDeviceSelected = false;               // wtf?
+                }
             }
             else
-                IsValidDeviceSelected = true;
+            {
+                IsValidDeviceSelected = false;                    // open legacy device. legacy devices do not have versions or commands
+            }
 
-            if (IsValidDeviceSelected)
-                SelectTracker = Resources.Firmware_SelectTracker_Connected;
-            else
-                SelectTracker = Resources.Firmware_SelectTracker_NoResponse;
+            SelectTracker = IsValidDeviceSelected ?
+                Resources.Firmware_SelectTracker_Connected :
+                Resources.Firmware_SelectTracker_NoResponse;
 
             await Task.Delay(3000);
             SelectTracker = Resources.Firmware_SelectTracker_Default;
         }
+    }
+
+    // Plucked from SerialCameraCaptureFactory.cs
+    private bool CanConnect(string address)
+    {
+        var lowered = address.ToLower();
+        return lowered.StartsWith("com") ||
+               lowered.StartsWith("/dev/tty") ||
+               lowered.StartsWith("/dev/cu") ||
+               lowered.StartsWith("/dev/ttyacm");
     }
 
     [RelayCommand]
@@ -305,6 +330,7 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
         await Task.Delay(2000);
         WifiSetButton = Resources.Firmware_WifiSetButton_Default;
 
+        // By this point we should have a valid serial port, no need to do any error wrapping here
         //if (!string.IsNullOrEmpty(Mdns))
         //{
         //    _firmwareSessions[SelectedSerialPort!].SendCommand(new FirmwareRequests.SetMdns(Mdns), TimeSpan.FromSeconds(30));
@@ -314,8 +340,10 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
     [RelayCommand]
     private async Task FlashFirmware()
     {
-        if (_firmwareSessions.TryGetValue(SelectedSerialPort!, out IFirmwareSession? value))
+        if (_firmwareSessions.TryGetValue(SelectedSerialPort!, out var value))
         {
+            if (value == null) return;
+
             // True, this is a multimodal device that needs to be released prior to flashing
             await TrySendCommandAsync(new FirmwareRequests.SetPausedRequest(false), TimeSpan.FromSeconds(5));
             value.Dispose();
@@ -349,6 +377,7 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
         IsFlashing = false;
 
         IsFinished = true;
+        // No need to check if this is a valid Babble tracker - treat it like a normal device
         _firmwareSessions[SelectedSerialPort!] =
             _firmwareService.StartSession(CommandSenderType.Serial, SelectedSerialPort!);
         await Task.Delay(5000);
@@ -370,13 +399,17 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
     {
         try
         {
-            return await _firmwareSessions[SelectedSerialPort!].SendCommandAsync(request, timeSpan);
+            if (_firmwareSessions.TryGetValue(SelectedSerialPort!, out var session))
+            {
+                return await session.SendCommandAsync(request, timeSpan);
+            }
         }
         catch (Exception e)
         {
             _logger.LogError("Error while sending command {Exception}", e);
-            return await Task.FromResult(FirmwareResponse<JsonDocument>.Failure($"Error while sending command: {e}"));
         }
+
+        return await Task.FromResult(FirmwareResponse<JsonDocument>.Failure("Error while sending command."));
     }
 
     public void Dispose()
@@ -389,7 +422,8 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
 
         foreach (var sessions in _firmwareSessions.Values)
         {
-            sessions.SendCommand(new FirmwareRequests.SetPausedRequest(false), TimeSpan.FromSeconds(5));
+            if (sessions != null)
+                sessions.SendCommand(new FirmwareRequests.SetPausedRequest(false), TimeSpan.FromSeconds(5));
         }
     }
 }
