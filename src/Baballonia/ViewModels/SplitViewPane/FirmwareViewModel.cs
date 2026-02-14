@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
-using System.IO.Ports;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
@@ -14,7 +12,6 @@ using Baballonia.Assets;
 using Baballonia.Contracts;
 using Baballonia.Models;
 using Baballonia.Services;
-using Baballonia.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -26,10 +23,6 @@ namespace Baballonia.ViewModels.SplitViewPane;
 // caveat: it changes the com port
 // possible solution: before restarting query and store the serial number and rescan the boards automatically assigning the one with the same serial as selected
 
-// TODO: Test with legacy firmware.
-
-// TODO: Conditional features with new commands, Version included in Session object
-
 public partial class FirmwareViewModel : ViewModelBase, IDisposable
 {
     private readonly FirmwareService _firmwareService = Ioc.Default.GetRequiredService<FirmwareService>();
@@ -38,11 +31,11 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
     private readonly Dictionary<string, CancellationTokenSource> _animationCancellationTokens = new();
     private readonly FirmwareSessionFactory _firmwareSessionFactory;
 
-    [ObservableProperty] private ObservableCollection<string> _availableSerialPorts = new();
+    [ObservableProperty] private ObservableCollection<string> _availableSerialPorts = [];
 
-    [ObservableProperty] private ObservableCollection<string> _availableWifiNetworks = new();
+    [ObservableProperty] private ObservableCollection<string> _availableWifiNetworks = [];
 
-    [ObservableProperty] private ObservableCollection<string> _availableFirmwareTypes = new();
+    [ObservableProperty] private ObservableCollection<string> _availableFirmwareTypes = [];
 
     [ObservableProperty] private int _selectedFirmwareIndex;
 
@@ -138,7 +131,7 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
         }
         catch (OperationCanceledException)
         {
-            // Animation was cancelled, which is expected
+            // Animation was canceled, which is expected
         }
     }
 
@@ -154,12 +147,10 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
 
     private void StopButtonAnimation(string propertyName)
     {
-        if (_animationCancellationTokens.TryGetValue(propertyName, out var cts))
-        {
-            cts.Cancel();
-            cts.Dispose();
-            _animationCancellationTokens.Remove(propertyName);
-        }
+        if (!_animationCancellationTokens.TryGetValue(propertyName, out var cts)) return;
+        cts.Cancel();
+        cts.Dispose();
+        _animationCancellationTokens.Remove(propertyName);
     }
 
     partial void OnSelectedSerialPortChanged(string? oldValue, string? newValue)
@@ -201,9 +192,9 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
                 {
                     var res = await TrySendCommandAsync(new FirmwareRequests.SetPausedRequest(true),
                         TimeSpan.FromSeconds(5));
-                    IsValidDeviceSelected = res.IsSuccess; 
+                    IsValidDeviceSelected = res.IsSuccess;
                 }
-                else if (session.Version > new Version(0, 2, 0)) // open v2 device. v2 devices report version and respond to commands
+                else if (session.Version >= new Version(0, 2, 0)) // open v2 device. v2 devices report version and respond to commands
                 {
                     IsValidDeviceSelected = true;
                 }
@@ -257,8 +248,8 @@ public partial class FirmwareViewModel : ViewModelBase, IDisposable
 
             foreach (var mappings in candidates)
             {
-                await Dispatcher.UIThread.InvokeAsync(() => AvailableSerialPorts.Add(mappings.port));
-                _firmwareSessions.Add(mappings.port, mappings.session);
+                await Dispatcher.UIThread.InvokeAsync(() => AvailableSerialPorts.Add(mappings.Port));
+                _firmwareSessions.Add(mappings.Port, mappings.Session);
             }
 
             StopButtonAnimation(nameof(OnRefreshDevicesButton));

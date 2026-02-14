@@ -23,8 +23,8 @@ public class FirmwareSessionFactory(ILoggerFactory loggerFactory, ICommandSender
     public IEnumerable<IFirmwareSession> TryOpenAllSessions()
     {
         List<IFirmwareSession> sessions = [];
-        var avaliablePorts = FindAvailableSerialPorts();
-        foreach (var port in avaliablePorts)
+        var availablePorts = FindAvailableSerialPorts();
+        foreach (var port in availablePorts)
         {
             var s = TryOpenSession(port);
             if(s != null)
@@ -34,7 +34,8 @@ public class FirmwareSessionFactory(ILoggerFactory loggerFactory, ICommandSender
         return sessions;
     }
 
-    public record PortToSessionMapping(string port, IFirmwareSession session);
+    public record PortToSessionMapping(string Port, IFirmwareSession Session);
+
     public async Task<List<PortToSessionMapping>> TryOpenAllSessionsAsync()
     {
         var availablePorts = FindAvailableSerialPorts();
@@ -64,7 +65,7 @@ public class FirmwareSessionFactory(ILoggerFactory loggerFactory, ICommandSender
         if (sessionV1 != null)
             return sessionV1;
 
-        _logger.LogInformation($"{port} most likely is not a babble board");
+        _logger.LogInformation("{Port} most likely is not a babble board", port);
 
         return null;
     }
@@ -76,13 +77,13 @@ public class FirmwareSessionFactory(ILoggerFactory loggerFactory, ICommandSender
 
     private FirmwareSessionV2? TryOpenV2Session(string port)
     {
-        _logger.LogInformation($"Attempting to open V2 session for {port}");
+        _logger.LogInformation("Attempting to open V2 session for {Port}", port);
         var sender = commandSenderFactory.Create(CommandSenderType.Serial, port);
         var sessionV2 = new FirmwareSessionV2(sender, loggerFactory.CreateLogger<FirmwareSessionV2>());
         var response = sessionV2.SendCommand(new FirmwareRequests.GetWhoAmIRequest(), TimeSpan.FromSeconds(3));
         if (!response.IsSuccess)
         {
-            _logger.LogInformation($"Can't open V2 session for {port}");
+            _logger.LogInformation("Can't open V2 session for {Port}", port);
             sessionV2.Dispose();
             sender.Dispose();
             return null;
@@ -95,19 +96,19 @@ public class FirmwareSessionFactory(ILoggerFactory loggerFactory, ICommandSender
             new Version(version.Replace(nit, string.Empty)) :
             new Version(version);
 
-        _logger.LogInformation($"Opened V2 session for {port}");
+        _logger.LogInformation("Opened V2 session for {Port}", port);
         return sessionV2;
     }
 
     private FirmwareSessionV1? TryOpenV1Session(string port)
     {
-        _logger.LogInformation($"Attempting to open V1 session for {port}");
+        _logger.LogInformation("Attempting to open V1 session for {Port}", port);
         var sender = commandSenderFactory.Create(CommandSenderType.Serial, port);
         var sessionV1 = new FirmwareSessionV1(sender, loggerFactory.CreateLogger<FirmwareSessionV1>());
         var heartbeat = sessionV1.WaitForHeartbeat(TimeSpan.FromSeconds(3));
         if (heartbeat == null)
         {
-            _logger.LogInformation($"Can't open V1 session for {port}");
+            _logger.LogInformation("Can't open V1 session for {Port}", port);
             sessionV1.Dispose();
             sender.Dispose();
             return null;
@@ -116,7 +117,7 @@ public class FirmwareSessionFactory(ILoggerFactory loggerFactory, ICommandSender
         // legacy
         sessionV1.Version = new Version(0,0,0);
 
-        _logger.LogInformation($"Opened V1 session for {port}");
+        _logger.LogInformation("Opened V1 session for {Port}", port);
         return sessionV1;
     }
 }
