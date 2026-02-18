@@ -66,8 +66,6 @@ Baballonia supports many kinds of hardware for eye and face tracking:
 
 ## Build Instructions
 
-*Note: The current working branch for the `v1.1.0.9` release is the `v1109-rc1` branch. For all features, please branch off of `main` so we can rebase this upstream. Thanks!*
-
 ### Baballonia.Desktop
 
 1. Run the associated ``download_dependencies`` script for your given platform (``.ps1`` on Windows, ``.sh`` on Linux).
