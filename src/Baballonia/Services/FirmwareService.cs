@@ -169,7 +169,7 @@ public class FirmwareService(ILogger<FirmwareService> logger, ICommandSenderFact
 
                 session.Dispose();
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
                 logger.LogInformation("probing port {}: timeout reached", port);
             }
