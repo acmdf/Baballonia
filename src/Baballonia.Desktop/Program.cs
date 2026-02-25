@@ -1,10 +1,10 @@
 ﻿using Avalonia;
-using Baballonia.Desktop.Captures;
-using System;
-using System.Threading;
 using Baballonia.Contracts;
 using Baballonia.Desktop.Calibration;
+using Baballonia.Desktop.Captures;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Threading;
 using Velopack;
 using TrainerService = Baballonia.Desktop.Calibration.TrainerService;
 

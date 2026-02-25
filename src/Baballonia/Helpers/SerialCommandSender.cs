@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Baballonia.Contracts;
+using System;
 using System.IO;
 using System.IO.Ports;
 using System.Text;
 using System.Threading;
-using Baballonia.Contracts;
 
 namespace Baballonia.Helpers;
 
@@ -14,18 +14,19 @@ public class SerialCommandSender : ICommandSender
 
     public SerialCommandSender(string port)
     {
-        _serialPort = new SerialPort(port, DefaultBaudRate);
+        _serialPort = new SerialPort(port, DefaultBaudRate)
+        {
+            // Set serial port parameters
+            DataBits = 8,
+            StopBits = StopBits.One,
+            Parity = Parity.None,
+            Handshake = Handshake.None,
 
-        // Set serial port parameters
-        _serialPort.DataBits = 8;
-        _serialPort.StopBits = StopBits.One;
-        _serialPort.Parity = Parity.None;
-        _serialPort.Handshake = Handshake.None;
-
-        // Set read/write timeouts
-        _serialPort.ReadTimeout = 30000;
-        _serialPort.WriteTimeout = 30000;
-        _serialPort.Encoding = Encoding.UTF8;
+            // Set read/write timeouts
+            ReadTimeout = 30000,
+            WriteTimeout = 30000,
+            Encoding = Encoding.UTF8
+        };
 
         int maxRetries = 5;
         const int sleepTimeInMs = 50;

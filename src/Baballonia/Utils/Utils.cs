@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography;
 using System.Security.Principal;
-using Avalonia.Logging;
 
 namespace Baballonia;
 

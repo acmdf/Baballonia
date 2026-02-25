@@ -1,9 +1,8 @@
-﻿using System;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
-using Avalonia.Threading;
 using Baballonia.ViewModels.SplitViewPane;
+using System;
 
 namespace Baballonia.Views;
 

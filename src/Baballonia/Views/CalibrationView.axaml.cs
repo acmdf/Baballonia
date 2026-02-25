@@ -1,9 +1,5 @@
-using System;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using Avalonia.VisualTree;
-using Baballonia.ViewModels.SplitViewPane;
-using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace Baballonia.Views;
 

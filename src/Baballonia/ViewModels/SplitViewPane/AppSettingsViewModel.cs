@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Avalonia.Controls;
-using Avalonia.Logging;
-using Avalonia.Threading;
 using Baballonia.Contracts;
 using Baballonia.Services;
 using Baballonia.Services.Inference;
-using Baballonia.Services.Inference.Filters;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 
 namespace Baballonia.ViewModels.SplitViewPane;
 

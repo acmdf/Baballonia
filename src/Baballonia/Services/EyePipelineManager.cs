@@ -1,13 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Baballonia.Contracts;
+﻿using Baballonia.Contracts;
 using Baballonia.Services.Inference;
 using Baballonia.Services.Inference.Filters;
 using Baballonia.Services.Inference.Models;
 using Baballonia.Services.Inference.VideoSources;
 using Microsoft.Extensions.Logging;
 using OpenCvSharp;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Baballonia.Services;
 

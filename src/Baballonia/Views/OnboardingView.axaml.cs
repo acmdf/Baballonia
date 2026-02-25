@@ -1,11 +1,11 @@
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using System;
 using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
 using Avalonia.Platform;
 using Baballonia.Contracts;
 using Baballonia.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using System;
 
 namespace Baballonia.Views;
 

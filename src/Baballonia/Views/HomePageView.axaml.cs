@@ -1,7 +1,3 @@
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -10,6 +6,10 @@ using Avalonia.VisualTree;
 using Baballonia.Contracts;
 using Baballonia.Helpers;
 using Baballonia.ViewModels.SplitViewPane;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Baballonia.Views;
 

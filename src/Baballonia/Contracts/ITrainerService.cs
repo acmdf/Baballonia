@@ -1,7 +1,6 @@
-﻿using System;
-using System.Diagnostics;
+﻿using OverlaySDK.Packets;
+using System;
 using System.Threading.Tasks;
-using OverlaySDK.Packets;
 
 namespace Baballonia.Contracts;
 

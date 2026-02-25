@@ -1,7 +1,5 @@
-﻿using System;
-using Baballonia.Contracts;
+﻿using Baballonia.Contracts;
 using Baballonia.Services.Inference.Enums;
-using OpenCvSharp;
 
 namespace Baballonia.Services.Inference;
 

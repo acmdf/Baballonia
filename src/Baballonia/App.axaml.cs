@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using Baballonia.Helpers;
 using Baballonia.Activation;
 using Baballonia.Contracts;
 using Baballonia.Factories;
+using Baballonia.Helpers;
 using Baballonia.Models;
 using Baballonia.Services;
 using Baballonia.Services.Inference;
@@ -25,7 +19,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OpenCvSharp.XPhoto;
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Baballonia;
 

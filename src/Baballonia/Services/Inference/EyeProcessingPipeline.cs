@@ -1,6 +1,6 @@
-﻿using System;
-using Baballonia.Services.events;
+﻿using Baballonia.Services.events;
 using Baballonia.Services.Inference.Enums;
+using System;
 
 namespace Baballonia.Services.Inference;
 

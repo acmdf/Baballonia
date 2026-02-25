@@ -1,6 +1,6 @@
-﻿using System.Net;
-using Baballonia.Contracts;
+﻿using Baballonia.Contracts;
 using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace Baballonia.Services;
 

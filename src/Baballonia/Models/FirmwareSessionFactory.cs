@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using Baballonia.Contracts;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading.Tasks;
-using Baballonia.Contracts;
-using Microsoft.Extensions.Logging;
 
 namespace Baballonia.Models;
 

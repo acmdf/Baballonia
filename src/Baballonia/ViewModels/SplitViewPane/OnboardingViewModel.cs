@@ -1,13 +1,10 @@
-using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using Baballonia.Contracts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using Baballonia.Services;
-using Baballonia.Contracts;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Baballonia.ViewModels;
 

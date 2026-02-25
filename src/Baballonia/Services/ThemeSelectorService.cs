@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Baballonia.Contracts;

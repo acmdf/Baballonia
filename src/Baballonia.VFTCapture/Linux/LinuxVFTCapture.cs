@@ -1,7 +1,7 @@
-using System.Runtime.InteropServices;
 using Baballonia.VFTCapture.Linux.V4L2;
 using Microsoft.Extensions.Logging;
 using OpenCvSharp;
+using System.Runtime.InteropServices;
 using Capture = Baballonia.SDK.Capture;
 
 namespace Baballonia.VFTCapture.Linux;

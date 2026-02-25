@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Reflection;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Avalonia.Controls;
-using Avalonia.Threading;
-using Baballonia.Contracts;
+﻿using Baballonia.Contracts;
 using Baballonia.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Baballonia.ViewModels.SplitViewPane;
 

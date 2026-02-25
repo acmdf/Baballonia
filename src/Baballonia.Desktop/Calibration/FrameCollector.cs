@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Baballonia.CaptureBin.IO;
+using OpenCvSharp;
+using OverlaySDK.Packets;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Baballonia.CaptureBin.IO;
-using OpenCvSharp;
-using OverlaySDK.Packets;
 
 namespace Baballonia.Desktop.Calibration;
 

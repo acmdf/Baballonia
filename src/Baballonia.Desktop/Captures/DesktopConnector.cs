@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Baballonia.SDK;
+using Baballonia.Services.Inference.Platforms;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Loader;
-using Baballonia.SDK;
-using Baballonia.Services.Inference.Platforms;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Baballonia.Desktop.Captures;
 

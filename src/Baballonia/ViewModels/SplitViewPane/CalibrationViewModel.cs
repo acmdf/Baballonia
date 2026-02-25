@@ -1,16 +1,15 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using Baballonia.Models;
+using Avalonia.Threading;
 using Baballonia.Contracts;
+using Baballonia.Helpers;
+using Baballonia.Models;
+using Baballonia.Services;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using Avalonia.Threading;
-using Baballonia.Helpers;
-using Baballonia.Services;
-using CommunityToolkit.Mvvm.Input;
 
 namespace Baballonia.ViewModels.SplitViewPane;
 
