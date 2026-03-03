@@ -243,7 +243,7 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
                 return;
 
 
-            int channels = image.Channels();
+            var channels = image.Channels();
             if (channels == 1)
             {
                 var width = image.Width;
@@ -301,9 +301,9 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
             {
                 using var frameBuffer = _bitmap.Lock();
 
-                IntPtr srcPtr = image.Data;
-                IntPtr destPtr = frameBuffer.Address;
-                int size = image.Rows * image.Cols * image.ElemSize();
+                var srcPtr = image.Data;
+                var destPtr = frameBuffer.Address;
+                var size = image.Rows * image.Cols * image.ElemSize();
 
                 unsafe
                 {
@@ -619,7 +619,7 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
                 backend = "";
 
 
-            bool success = false;
+            var success = false;
             switch (model.Camera)
             {
                 case Camera.Face:
@@ -638,7 +638,11 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
 
             if (success)
             {
-                if (startMaximized)
+                // Only select the entire frame if and only if
+                // 1) This call originates from the UI, IE a user has requested it
+                // 2) The current camera differs from the previous (IE, an existing connection was interrupted)
+                var lastOpenedCameraName = _localSettings.ReadSetting<string>("LastOpened" + model.Name);
+                if (startMaximized && lastOpenedCameraName != model.DisplayAddress)
                 {
                     model.SelectWholeFrame();
                 }
@@ -705,7 +709,7 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
 
     public Color GetBaseHighColor()
     {
-        Color color = Colors.White;
+        var color = Colors.White;
         switch (Application.Current!.ActualThemeVariant.ToString())
         {
             case "Light":
