@@ -55,24 +55,24 @@
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.12" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.12" />
-        <PackageReference Include="AWSSDK.S3" Version="4.0.18.7" />
+        <PackageReference Include="AWSSDK.S3" Version="4.0.18.8" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.3" />
-        <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.3" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
-        <PackageReference Include="Microsoft.ML" Version="5.0.0" />
-        <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.4" />
+        <PackageReference Include="Microsoft.ML" Version="4.0.3" />
+        <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="4.0.3" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-        <PackageReference Include="OpenCvSharp4" Version="4.13.0.20260226" />
+        <PackageReference Include="OpenCvSharp4" Version="4.13.0.20260308" />
         <PackageReference Include="OscCore" Version="1.0.5" />
         <PackageReference Include="Project-Babble.Baballonia.OverlaySDK" Version="1.0.5-alpha" />
         <PackageReference Include="SkiaSharp" Version="3.119.2" />
         <PackageReference Include="System.Net.Http" Version="4.3.4" />
         <PackageReference Include="VRChat.OSCQuery" Version="0.0.7" />
-        <PackageReference Include="System.IO.Ports" Version="10.0.3" />
-        <PackageReference Include="System.Management" Version="10.0.3" />
+        <PackageReference Include="System.IO.Ports" Version="10.0.4" />
+        <PackageReference Include="System.Management" Version="10.0.4" />
         <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
         <PackageReference Include="Xaml.Behaviors.Interactions.Draggable" Version="11.3.9.5" />
     </ItemGroup>
