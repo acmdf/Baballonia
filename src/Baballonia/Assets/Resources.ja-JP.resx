@@ -438,12 +438,6 @@
   <data name="Onboarding_Finish_Button" xml:space="preserve">
     <value>完了</value>
   </data>
-  <data name="Onboarding_Previous_Button" xml:space="preserve">
-    <value>前へ</value>
-  </data>
-  <data name="Onboarding_Skip_Button" xml:space="preserve">
-    <value>スキップ</value>
-  </data>
   <data name="Onboarding_Wireless_Header" xml:space="preserve">
     <value>Wirelessですか？</value>
   </data>
@@ -850,10 +844,23 @@ Wi-Fi認証情報を入力する必要はありません。トラッカーを「
   <data name="Common_Note" xml:space="preserve">
     <value>注</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>回避策:
 • Steam scout 1.0 ランタイム（sniper 3.0 ではない）を試す、libudev をインストールする、ソースからビルドする、または plugdev グループに参加する。
 • Steam と tarball リリースのみサポートしており、AUR パッケージはサポートしていません。
 • Babble ボードは Linux で UVC/シリアルをサポートしていないため、ワイヤレス構成を使用してください。</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>目/顔データを共有</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>アルゴリズム改善のため、匿名の目/顔データの共有にオプトイン</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>DFRを使用</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>選択されたタイトルでPimax4All動的フォベーションレンダリングを有効にする</value>
   </data>
 </root>

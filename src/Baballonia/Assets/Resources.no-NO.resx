@@ -135,6 +135,9 @@
   <data name="Settings_Theme_Description" xml:space="preserve">
     <value>Velg hvilket app tema som skal vises</value>
   </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Aktiver Pimax4All dynamisk foveated rendering for valgte titler</value>
+  </data>
   <data name="Settings_OSC_Description" xml:space="preserve">
     <value>Hvor skal OSC-data sendes?</value>
   </data>
@@ -193,7 +196,7 @@
     <value>Velg høyre ramme</value>
   </data>
   <data name="Home_Face_Camera_Address" xml:space="preserve">
-    <value>Ansiktskamera-adresse (Automatic Translation)</value>
+    <value>Ansiktskamera-adresse</value>
   </data>
   <data name="Home_Face_Camera_Select_Entire_Frame" xml:space="preserve">
     <value>Velg Ansikts-Ramme</value>
@@ -460,7 +463,7 @@
     <value>Språk</value>
   </data>
   <data name="Settings_Language_Description" xml:space="preserve">
-    <value>Angi programmets språk. Bytt sider til det gjelder. (Automatic Translation)</value>
+    <value>Angi programmets språk. Bytt sider til det gjelder.</value>
   </data>
   <data name="Settings_Language_Default" xml:space="preserve">
     <value>Standard</value>
@@ -741,10 +744,22 @@
   <data name="DropOverlay_Dismiss_Button" xml:space="preserve">
     <value>Avvis</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Midlertidige løsninger:
 - Prøv Steam scout 1.0 runtime (ikke sniper 3.0), installer libudev, bygg fra kildekoden, eller bli med i plugdev-gruppen.
 - Vi støtter kun Steam- og tarball-utgivelser, ikke AUR-pakken.
 - Babble-kort støtter ikke UVC/Serielt på Linux, bruk en trådløs konfigurasjon.</value>
+  </data>
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Del øye-/ansiktsdata</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Samtykk til å dele anonyme øye-/ansiktsdata for å forbedre våre algoritmer</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Bruk DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Aktiver Pimax4All dynamisk foveated rendering for valgte titler</value>
   </data>
 </root>

@@ -19,7 +19,7 @@ namespace Baballonia.Assets {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -1562,6 +1562,24 @@ namespace Baballonia.Assets {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Pimax4All dynamic foveated rendering for select titles.
+        /// </summary>
+        public static string Settings_DFR_Description {
+            get {
+                return ResourceManager.GetString("Settings_DFR_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use DFR.
+        /// </summary>
+        public static string Settings_DFR_Header {
+            get {
+                return ResourceManager.GetString("Settings_DFR_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter Settings.
         /// </summary>
         public static string Settings_Filter_Description {
@@ -2098,6 +2116,24 @@ namespace Baballonia.Assets {
         public static string Settings_OSC_VRCFT_Warning {
             get {
                 return ResourceManager.GetString("Settings_OSC_VRCFT_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opt into sharing anonymous eye/face data to improve our algorithms.
+        /// </summary>
+        public static string Settings_ShareData_Description {
+            get {
+                return ResourceManager.GetString("Settings_ShareData_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share eye/face data.
+        /// </summary>
+        public static string Settings_ShareData_Header {
+            get {
+                return ResourceManager.GetString("Settings_ShareData_Header", resourceCulture);
             }
         }
         

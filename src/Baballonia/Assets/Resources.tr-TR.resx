@@ -844,10 +844,23 @@ Bu genellikle kolayca düzeltilebilir! Sadece aşağıdaki "Takip Kaybı Düzelt
   <data name="Common_Note" xml:space="preserve">
     <value>Not</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Geçici çözümler:
 • Steam scout 1.0 çalışma zamanını (sniper 3.0 değil), libudev kurun, kaynaktan derleyin, veya plugdev grubuna katılın.
 • Sadece Steam ve tarball sürümlerini destekliyoruz, AUR paketini değil.
 • Babble kartları Linux'te UVC/Seri port desteklemiyor, kablosuz bir yapılandırma kullanın.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Göz/yüz verilerini paylaş</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Algoritmalarımızı iyileştirmek için anonim göz/yüz verilerini paylaşmayı kabul et</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>DFR kullan</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Seçili başlıklar için Pimax4All dinamik foveated rendering'i etkinleştir</value>
   </data>
 </root>

@@ -844,10 +844,23 @@
   <data name="Common_Note" xml:space="preserve">
     <value>Примечание</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Решения:
 • Опитайте среду выполнения Steam scout 1.0 (не sniper 3.0), установите libudev, соберите из исходного кода, или присоединитесь к группе plugdev.
 • Мы поддерживаем только релизы Steam и tarball, не пакет AUR.
 • Платы Babble не поддерживают UVC/Последовательный порт в Linux, используйте беспроводную конфигурацию.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Поделиться данными глаз/лица</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Согласиться на обмен анонимными данными глаз/лица для улучшения наших алгоритмов</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Использовать DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Включить динамическую фовеацию Pimax4All для выбранных игр</value>
   </data>
 </root>

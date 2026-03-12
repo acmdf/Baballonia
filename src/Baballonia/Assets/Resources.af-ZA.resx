@@ -844,10 +844,23 @@ Dit is gewoon maklik om reg te maak! Installeer net die "Tracking Loss Fix" firm
   <data name="Common_Note" xml:space="preserve">
     <value>Nota</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Tydelike oplossings:
 - Probeer die Steam scout 1.0 runtime (nie sniper 3.0 nie), installeer libudev, bou vanaf die bronkode, of sluit aan by die plugdev-groep.
 - Ons ondersteun slegs Steam- en tarball-vrystellings, nie die AUR-pakket nie.
 - Babble-borde ondersteun nie UVC/Serieel op Linux nie, gebruik 'n draadlose konfigurasie.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Deel oog/gesig data</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Stem in tot die deel van anonieme oog/gesig data om ons algoritmes te verbeter</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Gebruik DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Stel Pimax4All dinamiese foveated rendering in vir geselekteerde titels</value>
   </data>
 </root>

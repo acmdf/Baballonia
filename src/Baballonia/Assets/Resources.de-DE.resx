@@ -844,10 +844,23 @@ Dies ist normalerweise einfach zu beheben! Installieren Sie einfach die "Trackin
   <data name="Common_Note" xml:space="preserve">
     <value>Hinweis</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Problemumgehungen:
 • Versuchen Sie die Steam scout 1.0 runtime (nicht sniper 3.0), installieren Sie libudev, bauen Sie aus der Quelle, oder treten Sie der plugdev-Gruppe bei.
 • Wir unterstützen nur Steam- und tarball-Versionen, nicht das AUR-Paket.
 • Babble-Boards unterstützen kein UVC/Seriell unter Linux, verwenden Sie eine drahtlose Konfiguration.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Augen-/Gesichtsdaten teilen</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Anonyme Augen-/Gesichtsdaten teilen, um unsere Algorithmen zu verbessern</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>DFR verwenden</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Pimax4All dynamische Foveated Rendering für ausgewählte Titel aktivieren</value>
   </data>
 </root>

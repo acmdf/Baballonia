@@ -850,4 +850,16 @@ This is usually easy to fix! Just install the “Tracking Loss Fix” firmware b
 • We only support Steam and tarball releases, not the AUR package.
 • Babble Boards do not support UVC/Serial on Linux, use a wireless configuration.</value>
   </data>
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Share eye/face data</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Opt into sharing anonymous eye/face data to improve our algorithms</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Use DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Enable Pimax4All dynamic foveated rendering for select titles</value>
+  </data>
 </root>

@@ -850,4 +850,17 @@ This is usually easy to fix! Just install the "Tracking Loss Fix" firmware below
 • We only support Steam and tarball releases, not the AUR package.
 • Babble Boards do not support UVC/Serial on Linux, use a wireless configuration.</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Settings_ShareData_Description" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Settings_DFR_Header" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Settings_DFR_Description" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
 </root>

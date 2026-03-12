@@ -844,10 +844,23 @@ Questo di solito è facile da risolvere! Installa semplicemente il firmware "Tra
   <data name="Common_Note" xml:space="preserve">
     <value>Nota</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Soluzioni alternative:
 • Prova il runtime Steam scout 1.0 (non sniper 3.0), installa libudev, compila dai sorgenti, o unisciti al gruppo plugdev.
 • Supportiamo solo le release Steam e tarball, non il pacchetto AUR.
 • Le schede Babble non supportano UVC/Seriale su Linux, usa una configurazione wireless.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Condividi dati occhi/viso</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Acconsenti alla condivisione di dati anonimi di occhi/viso per migliorare i nostri algoritmi</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Usa DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Abilita il rendering dinamico con foveazione Pimax4All per i titoli selezionati</value>
   </data>
 </root>

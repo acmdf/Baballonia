@@ -844,10 +844,23 @@
   <data name="Common_Note" xml:space="preserve">
     <value>ملاحظة</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>حلول بديلة:
 • جرب وقت تشغيل Steam scout 1.0 (ليس نايبر 3.0)، قم بتثبيت libudev، أو انضم إلى مجموعة plugdev.
 • نحن ندعم فقط إصدارات Steam و tarball، وليست حزمة AUR.
 • لوحات Babble لا تدعم UVC/المنفذ التسلسلي على Linux، استخدم تكوين لاسلكي.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>مشاركة بيانات العين/الوجه</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>الموافقة على مشاركة بيانات العين/الوجه المجهولة لتحسين خوارزمياتنا</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>استخدام DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>تمكين Pimax4All العرض الديناميكي foveated للعناوين المحددة</value>
   </data>
 </root>

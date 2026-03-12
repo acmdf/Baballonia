@@ -472,7 +472,6 @@
     <value>Tiếng Anh</value>
   </data>
   <data name="Settings_Language_Spanish" xml:space="preserve">
-    <value>Tây Ban Nha</value>
     <value>Tiếng Tây Ban Nha</value>
   </data>
   <data name="Settings_Language_Japanese" xml:space="preserve">
@@ -850,5 +849,18 @@ Bạn không cần nhập thông tin xác thực Wi-Fi. Chỉ cần chuyển tra
 - Thử runtime Steam scout 1.0 (không phải sniper 3.0), cài đặt libudev, xây dựng từ nguồn, hoặc tham gia nhóm plugdev.
 - Chúng tôi chỉ hỗ trợ các bản phát hành Steam và tarball, không phải gói AUR.
 - Bo mạch Babble không hỗ trợ UVC/Sê-ri trên Linux, sử dụng cấu hình không dây.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Chia sẻ dữ liệu mắt/khuôn mặt</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Đồng ý chia sẻ dữ liệu mắt/khuôn mặt ẩn danh để cải thiện thuật toán của chúng tôi</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Sử dụng DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Bật Pimax4All dynamic foveated rendering cho các tiêu đề đã chọn</value>
   </data>
 </root>

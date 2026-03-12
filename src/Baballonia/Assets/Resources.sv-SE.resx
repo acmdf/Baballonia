@@ -844,10 +844,23 @@ Detta är oftast lätt att fixa! Installera bara "Tracking Loss Fix" firmware ne
   <data name="Common_Note" xml:space="preserve">
     <value>Notera</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Temporära lösningar:
 • Prova Steam scout 1.0 runtime (inte sniper 3.0), installera libudev, bygg från källkoden, eller gå med i plugdev-gruppen.
 • Vi stödjer endast Steam- och tarball-utgåvor, inte AUR-paketet.
 • Babble-kort stödjer inte UVC/Seriell på Linux, använd en trådlös konfiguration.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Dela ögon-/ansiktsdata</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Samtyck till att dela anonym ögon-/ansiktsdata för att förbättra våra algoritmer</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Använd DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Aktivera Pimax4All dynamisk foveated rendering för valda titlar</value>
   </data>
 </root>

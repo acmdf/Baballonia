@@ -844,10 +844,23 @@ No necesitas ingresar ninguna credencial Wi-Fi. Simplemente cambia el tracker a 
   <data name="Common_Note" xml:space="preserve">
     <value>Nota</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Soluciones alternativas:
 • Prueba el runtime Steam scout 1.0 (no sniper 3.0), instala libudev, compila desde el código fuente, o únete al grupo plugdev.
 • Solo soportamos lanzamientos de Steam y tarball, no el paquete AUR.
 • Las placas Babble no soportan UVC/Serie en Linux, usa una configuración inalámbrica.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Compartir datos de ojos/cara</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Optar por compartir datos anónimos de ojos/cara para mejorar nuestros algoritmos</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Usar DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Habilitar renderizado dinámico con foveación Pimax4All para títulos seleccionados</value>
   </data>
 </root>

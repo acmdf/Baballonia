@@ -844,10 +844,23 @@ Acest lucru este de obicei ușor de reparat! Doar instalați firmware-ul "Tracki
   <data name="Common_Note" xml:space="preserve">
     <value>Notă</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Soluții alternative:
 - Încercați runtime-ul Steam scout 1.0 (nu sniper 3.0), instalați libudev, compilați din sursă, sau alăturați-vă grupului plugdev.
 - Suportăm doar lansările Steam și tarball, nu pachetul AUR.
 - Plăcile Babble nu suportă UVC/Seriale pe Linux, folosiți o configurație wireless.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Partajați date ochi/feță</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Acceptați partajarea de date anonime ochi/feță pentru a îmbunătăți algoritmii noștri</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Folosiți DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Activați Pimax4All dynamic foveated rendering pentru titluri selectate</value>
   </data>
 </root>

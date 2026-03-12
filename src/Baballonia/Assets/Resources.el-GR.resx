@@ -844,10 +844,23 @@
   <data name="Common_Note" xml:space="preserve">
     <value>Σημείωση</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Προσωρινές λύσεις:
 - Δοκιμάστε το runtime Steam scout 1.0 (όχι sniper 3.0), εγκαταστήστε το libudev, χτίστε από τον πηγαίο κώδικα, ή ενταχθείτε στην ομάδα plugdev.
 - Υποστηρίζουμε μόνο εκδόσεις Steam και tarball, όχι το πακέτο AUR.
 - Οι κάρτες Babble δεν υποστηρίζουν UVC/Σειριακό στο Linux, χρησιμοποιήστε μια ασύρματη διαμόρφωση.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Κοινοποίηση δεδομένων ματιών/προσώπου</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Συμφωνήστε με την κοινοποίηση ανώνυμων δεδομένων ματιών/προσώπου για τη βελτίωση των αλγορίθμων μας</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Χρήση DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Ενεργοποίηση Pimax4All δυναμικής foveated απόδοσης για επιλεγμένους τίτλους</value>
   </data>
 </root>

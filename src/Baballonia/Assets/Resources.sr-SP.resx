@@ -744,10 +744,22 @@
   <data name="DropOverlay_Dismiss_Button" xml:space="preserve">
     <value>Odbaci</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Privremena rešenja:
 - Probajte Steam scout 1.0 runtime (ne sniper 3.0), instalirajte libudev, izgradite iz izvornog koda, ili se pridružite plugdev grupi.
 - Podržavamo samo Steam i tarball izdanja, ne AUR paket.
 - Babble ploče ne podržavaju UVC/Serijski na Linuxu, koristite bežičnu konfiguraciju.</value>
+  </data>
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Дели податке о очима/лицу</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Прихватите дељење анонимних података о очима/лицу за побољшање наших алгоритама</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Користи DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Омогућити Pimax4All динамички фовеирани рендеринг за изабране наслове</value>
   </data>
 </root>

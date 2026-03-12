@@ -181,7 +181,7 @@
     <value>בהירות התמונה</value>
   </data>
   <data name="Home_Cameras_Rotation_Header" xml:space="preserve">
-       <value>סיבוב התמונה</value>
+    <value>סיבוב התמונה</value>
   </data>
   <data name="Home_Cameras_Brightness_Description" xml:space="preserve">
     <value>התאמת את בהירות התמונה</value>
@@ -196,7 +196,7 @@
     <value>כתובת מצלמת פנים</value>
   </data>
   <data name="Home_Face_Camera_Select_Entire_Frame" xml:space="preserve">
-       <value>בחר מסגר פנים</value>
+    <value>בחר מסגר פנים</value>
   </data>
   <data name="Home_Left_Camera_Header" xml:space="preserve">
     <value>מצלמת עיןיים שמאל</value>
@@ -849,5 +849,18 @@
 • נסה את זמן הרצה Steam scout 1.0 (לא sniper 3.0), התקן libudev, בנה מקוד מקור, או הצטרף לקבוצת plugdev.
 • אנו תומכים רק במהדורות Steam ו-tarball, לא בחבילת AUR.
 • לוחות Babble לא תומכים ב-UVC/סריאלי ב-Linux, השתמש בתצורה אלחוטית.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>שתף נתוני עיניים/פנים</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>הסכם לשתף נתוני עיניים/פנים אנונימיים כדי לשפר את האלגוריתמים שלנו</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>השתמש ב-DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>אפשר Pimax4All רינדור דינמי עם foveation עבור כותרות נבחרות</value>
   </data>
 </root>

@@ -844,10 +844,23 @@ Ez általában könnyen javítható! Csak telepítse a "Tracking Loss Fix" firmw
   <data name="Common_Note" xml:space="preserve">
     <value>Megjegyzés</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Áthidaló megoldások:
 - Próbálja ki a Steam scout 1.0 futtatókörnyezetet (nem sniper 3.0), telepítse a libudev-t, fordítsa forráskódból, vagy csatlakozzon a plugdev csoporthoz.
 - Csak a Steam és tarball kiadásokat támogatjuk, nem az AUR csomagot.
 - A Babble lapok nem támogatják az UVC/Soros portot Linuxon, használjon vezeték nélküli konfigurációt.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Szem-/arcadat megosztása</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Beleegyezés anonim szem-/arcadatok megosztásához algoritmusaink fejlesztéséhez</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>DFR használata</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Pimax4All dinamikus foveated rendering engedélyezése kiválasztott címekhez</value>
   </data>
 </root>

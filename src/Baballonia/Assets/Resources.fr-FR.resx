@@ -850,4 +850,17 @@ C'est généralement facile à résoudre ! Installez simplement le micrologiciel
 • Nous supportons seulement Steam ou Tarball, pas les version AUR.
 • Les appareils Babble ne supportent pas UVC/Serial sur Linux, utilisez une configuration sans fil.</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Partager les données des yeux/visage</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Accepter de partager des données anonymes des yeux/visage pour améliorer nos algorithmes</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Utiliser DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Activer le rendu dynamique avec fovéation Pimax4All pour les titres sélectionnés</value>
+  </data>
 </root>

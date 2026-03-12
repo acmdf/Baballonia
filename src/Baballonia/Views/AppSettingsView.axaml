@@ -330,8 +330,8 @@
           SettingToggled="{Binding UseGPU, Mode=TwoWay}" />
 
       <controls:SettingsToggle
-        Title="Use DFR"
-        Description="Enable Pimax4All dynamic foveated rendering for select titles"
+        Title="{x:Static assets:Resources.Settings_DFR_Header}"
+        Description="{x:Static assets:Resources.Settings_DFR_Description}"
         IconPath="GamesRegular"
         SettingToggled="{Binding UseDFR, Mode=TwoWay}" />
 
@@ -362,8 +362,8 @@
                SettingToggled="{Binding SteamvrAutoStart, Mode=TwoWay}" />
 
       <controls:SettingsToggle
-        Title="Advanced settings"
-        Description="Enable advanced settings"
+        Title="{x:Static assets:Resources.Settings_Advanced_Header}"
+        Description="{x:Static assets:Resources.Settings_Advanced_Description}"
         IconPath="SettingsRegular"
         SettingToggled="{Binding AdvancedOptions, Mode=TwoWay}" />
 
@@ -394,12 +394,12 @@
                 FontSize="16"
                 FontWeight="SemiBold"
                 Margin="5"
-                Text="Share eye/face data" />
+                Text="{x:Static assets:Resources.Settings_ShareData_Header}" />
               <TextBlock
                 FontSize="14"
                 Foreground="{DynamicResource SystemChromeGrayColor}"
                 Margin="5"
-                Text="Opt into sharing anonymous eye/face data to improve our algorithms" />
+                Text="{x:Static assets:Resources.Settings_ShareData_Description}" />
             </StackPanel>
             <ToggleSwitch
               Grid.Column="3"

@@ -844,10 +844,23 @@ Isso geralmente é fácil de corrigir! Basta instalar o firmware "Tracking Loss 
   <data name="Common_Note" xml:space="preserve">
     <value>Nota</value>
   </data>
-<data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
+  <data name="Home_Cameras_Linux_Workarounds" xml:space="preserve">
     <value>Soluções alternativas:
 - Tente o runtime Steam scout 1.0 (não sniper 3.0), instale libudev, compile a partir do código fonte, ou junte-se ao grupo plugdev.
 - Suportamos apenas lançamentos Steam e tarball, não o pacote AUR.
 - As placas Babble não suportam UVC/Serial no Linux, use uma configuração sem fio.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Settings_ShareData_Header" xml:space="preserve">
+    <value>Compartilhar dados dos olhos/rosto</value>
+  </data>
+  <data name="Settings_ShareData_Description" xml:space="preserve">
+    <value>Aceitar compartilhar dados anônimos dos olhos/rosto para melhorar nossos algoritmos</value>
+  </data>
+  <data name="Settings_DFR_Header" xml:space="preserve">
+    <value>Usar DFR</value>
+  </data>
+  <data name="Settings_DFR_Description" xml:space="preserve">
+    <value>Habilitar renderização dinâmica com foveação Pimax4All para títulos selecionados</value>
   </data>
 </root>
