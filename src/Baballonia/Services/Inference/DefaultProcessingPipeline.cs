@@ -15,8 +15,6 @@ public class DefaultProcessingPipeline : IProcessingPipeline
     public IInferenceRunner? InferenceService;
     public IFilter? Filter;
 
-
-
     public float[]? RunUpdate()
     {
         var frame = VideoSource?.GetFrame(ColorType.Gray8);

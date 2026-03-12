@@ -4,31 +4,22 @@ using System;
 
 namespace Baballonia.Services.Inference;
 
-public class FaceProcessingPipeline : DefaultProcessingPipeline
+public class FaceProcessingPipeline(IFacePipelineEventBus facePipelineEventBus) : DefaultProcessingPipeline
 {
-
-    private readonly IFacePipelineEventBus _facePipelineEventBus;
-
-    public FaceProcessingPipeline(IFacePipelineEventBus facePipelineEventBus)
-    {
-        _facePipelineEventBus = facePipelineEventBus;
-    }
-
-
     public float[]? RunUpdate()
     {
         var frame = VideoSource?.GetFrame(ColorType.Gray8);
         if(frame == null)
             return null;
 
-        _facePipelineEventBus.Publish(new FacePipelineEvents.NewFrameEvent(frame));
+        facePipelineEventBus.Publish(new FacePipelineEvents.NewFrameEvent(frame));
 
         var transformed = ImageTransformer?.Apply(frame);
 
         if(transformed == null)
             return null;
 
-        _facePipelineEventBus.Publish(new FacePipelineEvents.NewTransformedFrameEvent(transformed));
+        facePipelineEventBus.Publish(new FacePipelineEvents.NewTransformedFrameEvent(transformed));
 
         if (InferenceService == null)
             return null;
@@ -43,7 +34,7 @@ public class FaceProcessingPipeline : DefaultProcessingPipeline
         if(Filter != null)
             inferenceResult = Filter.Filter(inferenceResult);
 
-        _facePipelineEventBus.Publish(new FacePipelineEvents.NewFilteredResultEvent(inferenceResult));
+        facePipelineEventBus.Publish(new FacePipelineEvents.NewFilteredResultEvent(inferenceResult));
 
 
         return inferenceResult;

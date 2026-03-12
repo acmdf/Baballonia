@@ -1,4 +1,4 @@
-﻿using Baballonia.Services.Inference.Enums;
+using Baballonia.Services.Inference.Enums;
 using OpenCvSharp;
 using System;
 

@@ -4,16 +4,10 @@ using System;
 
 namespace Baballonia.Services.Inference;
 
-public class EyeProcessingPipeline : DefaultProcessingPipeline, IDisposable
+public class EyeProcessingPipeline(IEyePipelineEventBus eyePipelineEventBus) : DefaultProcessingPipeline, IDisposable
 {
-    private readonly IEyePipelineEventBus _eyePipelineEventBus;
     private readonly FastCorruptionDetector.FastCorruptionDetector _fastCorruptionDetector = new();
     private readonly ImageCollector _imageCollector = new();
-
-    public EyeProcessingPipeline(IEyePipelineEventBus eyePipelineEventBus)
-    {
-        _eyePipelineEventBus = eyePipelineEventBus;
-    }
 
     public bool StabilizeEyes { get; set; } = true;
 
@@ -26,13 +20,13 @@ public class EyeProcessingPipeline : DefaultProcessingPipeline, IDisposable
         if (_fastCorruptionDetector.IsCorrupted(frame).isCorrupted)
             return null;
 
-        _eyePipelineEventBus.Publish(new EyePipelineEvents.NewFrameEvent(frame));
+        eyePipelineEventBus.Publish(new EyePipelineEvents.NewFrameEvent(frame));
 
         var transformed = ImageTransformer?.Apply(frame);
         if(transformed == null)
             return null;
 
-        _eyePipelineEventBus.Publish(new EyePipelineEvents.NewTransformedFrameEvent(transformed));
+        eyePipelineEventBus.Publish(new EyePipelineEvents.NewTransformedFrameEvent(transformed));
 
         var collected = _imageCollector.Apply(transformed);
         transformed.Dispose();
@@ -55,7 +49,7 @@ public class EyeProcessingPipeline : DefaultProcessingPipeline, IDisposable
 
         ProcessExpressions(ref inferenceResult);
 
-        _eyePipelineEventBus.Publish(new EyePipelineEvents.NewFilteredResultEvent(inferenceResult));
+        eyePipelineEventBus.Publish(new EyePipelineEvents.NewFilteredResultEvent(inferenceResult));
 
         frame.Dispose();
         transformed.Dispose();
