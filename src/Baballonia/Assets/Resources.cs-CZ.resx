@@ -862,7 +862,6 @@ To je obvykle snadné opravit! Stačí nainstalovat firmware "Tracking Loss Fix"
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Povolit Pimax4All dynamické foveated rendering pro vybrané tituly</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Obě</value>
   </data>
@@ -874,5 +873,20 @@ To je obvykle snadné opravit! Stačí nainstalovat firmware "Tracking Loss Fix"
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Žádné</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Ladění</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Informace</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Varování</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Chyba</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Vybrat úroveň...</value>
   </data>
 </root>

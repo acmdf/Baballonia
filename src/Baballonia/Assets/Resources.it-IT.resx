@@ -862,7 +862,6 @@ Questo di solito è facile da risolvere! Installa semplicemente il firmware "Tra
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Abilita il rendering dinamico con foveazione Pimax4All per i titoli selezionati</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Entrambi</value>
   </data>
@@ -874,5 +873,23 @@ Questo di solito è facile da risolvere! Installa semplicemente il firmware "Tra
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Nessuno</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Informazione</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Avvertimento</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Seleziona Livello...</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Seleziona Livello...</value>
   </data>
 </root>

@@ -862,7 +862,6 @@ Bạn không cần nhập thông tin xác thực Wi-Fi. Chỉ cần chuyển tra
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Bật Pimax4All dynamic foveated rendering cho các tiêu đề đã chọn</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Cả hai</value>
   </data>
@@ -874,5 +873,20 @@ Bạn không cần nhập thông tin xác thực Wi-Fi. Chỉ cần chuyển tra
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Không có</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Gỡ lỗi</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Cảnh báo</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Chọn Cấp...</value>
   </data>
 </root>

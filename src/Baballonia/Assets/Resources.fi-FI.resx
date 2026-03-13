@@ -862,7 +862,6 @@ Tämä on yleensä helppo korjata! Asenna vain "Tracking Loss Fix" -laiteohjelmi
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Ota käyttöön Pimax4All dynaaminen foveated rendering valituille peleille</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Molemmat</value>
   </data>
@@ -874,5 +873,20 @@ Tämä on yleensä helppo korjata! Asenna vain "Tracking Loss Fix" -laiteohjelmi
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Ei mitään</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Tieto</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Varoitus</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Virhe</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Valitse Taso...</value>
   </data>
 </root>

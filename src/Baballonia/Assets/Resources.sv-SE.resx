@@ -862,7 +862,6 @@ Detta är oftast lätt att fixa! Installera bara "Tracking Loss Fix" firmware ne
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Aktivera Pimax4All dynamisk foveated rendering för valda titlar</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Båda</value>
   </data>
@@ -874,5 +873,20 @@ Detta är oftast lätt att fixa! Installera bara "Tracking Loss Fix" firmware ne
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Inget</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Felsökning</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Varning</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Välj Nivå...</value>
   </data>
 </root>

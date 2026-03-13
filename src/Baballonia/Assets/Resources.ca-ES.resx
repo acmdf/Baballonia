@@ -862,7 +862,6 @@ Això normalment és fàcil d'arreglar! Simplement instal·leu el firmware "Trac
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Activar Pimax4All renderitzat dinàmic amb foveació per a títols seleccionats</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Tots dos</value>
   </data>
@@ -874,5 +873,20 @@ Això normalment és fàcil d'arreglar! Simplement instal·leu el firmware "Trac
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Cap</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Depuració</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Informació</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Advertència</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Seleccionar Nivell...</value>
   </data>
 </root>

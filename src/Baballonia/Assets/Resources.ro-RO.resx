@@ -862,7 +862,6 @@ Acest lucru este de obicei ușor de reparat! Doar instalați firmware-ul "Tracki
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Activați Pimax4All dynamic foveated rendering pentru titluri selectate</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Ambele</value>
   </data>
@@ -874,5 +873,20 @@ Acest lucru este de obicei ușor de reparat! Doar instalați firmware-ul "Tracki
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Niciunul</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Depanare</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Informații</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Avertisment</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Eroare</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Selectați Nivel...</value>
   </data>
 </root>

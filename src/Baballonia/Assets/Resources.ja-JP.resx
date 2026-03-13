@@ -862,7 +862,6 @@ Wi-Fi認証情報を入力する必要はありません。トラッカーを「
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>選択されたタイトルでPimax4All動的フォベーションレンダリングを有効にする</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>両方</value>
   </data>
@@ -874,5 +873,20 @@ Wi-Fi認証情報を入力する必要はありません。トラッカーを「
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>なし</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>デバッグ</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>レベルを選択...</value>
   </data>
 </root>

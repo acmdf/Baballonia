@@ -862,7 +862,6 @@ Dette er normalt let at rette! Bare installer "Tracking Loss Fix" firmwaren nede
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Aktiver Pimax4All dynamisk foveated rendering for valgte titler</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Begge</value>
   </data>
@@ -874,5 +873,20 @@ Dette er normalt let at rette! Bare installer "Tracking Loss Fix" firmwaren nede
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Ingen</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Advarsel</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Vælg Niveau...</value>
   </data>
 </root>

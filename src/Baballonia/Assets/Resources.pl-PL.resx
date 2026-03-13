@@ -850,7 +850,6 @@ Zazwyczaj można to łatwo naprawić! Po prostu zainstaluj oprogramowanie "Track
 • Wspieramy tylko wydania Steam i tarball, nie pakiet AUR.
 • Płyty Babble nie obsługują UVC/Szeregowego na Linuksie, użyj konfiguracji bezprzewodowej.</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Settings_ShareData_Header" xml:space="preserve">
     <value>Udostępnij dane oczu/twarzy</value>
   </data>
@@ -875,5 +874,19 @@ Zazwyczaj można to łatwo naprawić! Po prostu zainstaluj oprogramowanie "Track
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Brak</value>
   </data>
-
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Informacja</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Ostrzeżenie</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Wybierz poziom...</value>
+  </data>
 </root>

@@ -862,7 +862,6 @@ Dit is meestal eenvoudig op te lossen! Installeer gewoon de "Tracking Loss Fix" 
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Pimax4All dynamische foveated rendering inschakelen voor geselecteerde titels</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Beide</value>
   </data>
@@ -874,5 +873,20 @@ Dit is meestal eenvoudig op te lossen! Installeer gewoon de "Tracking Loss Fix" 
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Geen</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Informatie</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Waarschuwing</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Fout</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Selecteer Niveau...</value>
   </data>
 </root>

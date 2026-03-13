@@ -862,7 +862,6 @@ Dit is gewoon maklik om reg te maak! Installeer net die "Tracking Loss Fix" firm
   <data name="Settings_DFR_Description" xml:space="preserve">
     <value>Stel Pimax4All dinamiese foveated rendering in vir geselekteerde titels</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Firmware_Mode_Both" xml:space="preserve">
     <value>Beide</value>
   </data>
@@ -874,5 +873,20 @@ Dit is gewoon maklik om reg te maak! Installeer net die "Tracking Loss Fix" firm
   </data>
   <data name="Firmware_Mode_None" xml:space="preserve">
     <value>Geen</value>
+  </data>
+  <data name="Settings_LogLevel_Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_LogLevel_Information" xml:space="preserve">
+    <value>Informasie</value>
+  </data>
+  <data name="Settings_LogLevel_Warning" xml:space="preserve">
+    <value>Waarskuwing</value>
+  </data>
+  <data name="Settings_LogLevel_Error" xml:space="preserve">
+    <value>Fout</value>
+  </data>
+  <data name="Settings_LogLevel_Level" xml:space="preserve">
+    <value>Kies Vlak...</value>
   </data>
 </root>
