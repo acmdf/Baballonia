@@ -17,7 +17,7 @@ public class TrainerServiceTest
         var log = factory.CreateLogger<TrainerService>();
         TrainerService service = new TrainerService(log);
 
-        service.RunTraining("test.bin", "model.onnx");
+        await service.RunTraining("test.bin", "model.onnx");
 
         await service.WaitAsync();
     }
