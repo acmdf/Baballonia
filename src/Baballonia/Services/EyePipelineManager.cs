@@ -54,29 +54,26 @@ public class EyePipelineManager
 
     public async Task LoadInferenceAsync()
     {
-        var inf = await Task.Run(CreateInference);
-        _pipeline.InferenceService = inf;
+        await Task.Run(CreateInference);
     }
 
-    private DefaultInferenceRunner CreateInference()
+    private void CreateInference()
     {
-        const string defaultEyeModelName = "eyeModel.onnx";
-        var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel", defaultEyeModelName);
-        var eyeModelPath = Path.Combine(AppContext.BaseDirectory, eyeModelName);
+        var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel");
+        if (eyeModelName != null)
+        {
+            var eyeModelPath = Path.Combine(AppContext.BaseDirectory, eyeModelName);
 
-        if (File.Exists(eyeModelPath)) return _inferenceFactory.Create(eyeModelPath);
-        _logger.LogError("{} Does not exists, Loading default...", eyeModelPath);
+            var load_error = _pipeline.LoadInference(eyeModelPath);
 
-        eyeModelName = defaultEyeModelName;
-        eyeModelPath = Path.Combine(AppContext.BaseDirectory, eyeModelName);
-
-        return _inferenceFactory.Create(eyeModelPath);
-    }
-
-
-    public void LoadInference()
-    {
-        _pipeline.InferenceService = CreateInference();
+            if (load_error != null)
+            {
+                _logger.LogError($"Inference error: {load_error}");
+            } else
+            {
+                _logger.LogInformation($"Inference loaded from {eyeModelPath}");
+            }
+        }
     }
 
     public void LoadFilter()

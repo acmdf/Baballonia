@@ -19,6 +19,10 @@ public partial class HomePageView : ViewBase
     {
         Patterns = ["*.onnx"],
     };
+    private static readonly FilePickerFileType RustTrainedModels = new("Rust-Trained Models")
+    {
+        Patterns = ["*.bin.gz"],
+    };
 
     private bool _isLayoutUpdating;
 
@@ -263,7 +267,7 @@ public partial class HomePageView : ViewBase
             Title = "Select ONNX Model",
             AllowMultiple = false,
             SuggestedStartLocation = suggestedStartLocation, // Falls back to desktop if Models folder hasn't been created yet
-            FileTypeFilter = [OnnxAll]
+            FileTypeFilter = [OnnxAll, RustTrainedModels],
         })!;
 
         if (file.Count == 0) return;

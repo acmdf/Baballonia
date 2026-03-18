@@ -42,12 +42,12 @@ public partial class CalibrationViewModel : ViewModelBase, IDisposable
         [
             new("LeftEyeLid"),
             new("RightEyeLid"),
-            //new ("LeftEyeWiden"),
+            new ("LeftEyeWiden"),
             //new ("LeftEyeLower"),
-            //new ("LeftEyeBrow"),
-            //new ("RightEyeWiden"),
+            new ("LeftEyeBrow"),
+            new ("RightEyeWiden"),
             //new ("RightEyeLower"),
-            //new ("RightEyeBrow"),
+            new ("RightEyeBrow"),
         ];
 
         JawSettings =

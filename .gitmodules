@@ -7,3 +7,6 @@
 [submodule "src/espflash"]
 	path = src/espflash
 	url = https://github.com/esp-rs/espflash.git
+[submodule "src/babble_trainer"]
+	path = src/babble_trainer
+	url = https://github.com/acmdf/babble_trainer
