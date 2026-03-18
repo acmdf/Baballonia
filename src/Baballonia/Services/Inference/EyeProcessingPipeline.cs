@@ -1,19 +1,23 @@
-﻿using Baballonia.Services.events;
+﻿using System;
+using Baballonia.Services.events;
 using Baballonia.Services.Inference.Enums;
-using System;
 using babble_model.Net.Sys;
+using Microsoft.Extensions.Logging;
 using OpenCvSharp;
 
 namespace Baballonia.Services.Inference;
 
 public class EyeProcessingPipeline : DefaultProcessingPipeline, IDisposable
 {
+    private readonly ILogger<EyeProcessingPipeline> _logger;
     private readonly IEyePipelineEventBus _eyePipelineEventBus;
     private readonly FastCorruptionDetector.FastCorruptionDetector _fastCorruptionDetector = new();
     private readonly ImageCollector _imageCollector = new();
+    private bool UseRustPipeline = false;
 
-    public EyeProcessingPipeline(IEyePipelineEventBus eyePipelineEventBus)
+    public EyeProcessingPipeline(ILogger<EyeProcessingPipeline> logger, IEyePipelineEventBus eyePipelineEventBus)
     {
+        _logger = logger;
         _eyePipelineEventBus = eyePipelineEventBus;
     }
 
@@ -34,6 +38,8 @@ public class EyeProcessingPipeline : DefaultProcessingPipeline, IDisposable
                 return errorMsg;
             }
 
+            UseRustPipeline = true;
+
             return null;
         }
     }
@@ -46,6 +52,7 @@ public class EyeProcessingPipeline : DefaultProcessingPipeline, IDisposable
         {
             string errorMsg = new String((sbyte*)res.value.error_message);
             Console.WriteLine($"Inference error: {errorMsg}");
+            NativeMethods.freeModelOutputResult(res);
             return null;
         }
 
@@ -80,10 +87,43 @@ public class EyeProcessingPipeline : DefaultProcessingPipeline, IDisposable
         if (collected == null)
             return null;
 
-        var inferenceResult = RunInference(collected);
+        float[]? inferenceResult;
+
+        if (UseRustPipeline)
+        {
+            inferenceResult = RunInference(collected);
+        }
+        else
+        {
+            if (InferenceService == null)
+                return null;
+
+            ImageConverter?.Convert(collected, InferenceService.GetInputTensor());
+
+            inferenceResult = InferenceService?.Run();
+        }
 
         if (inferenceResult == null)
             return null;
+
+        if (inferenceResult.Length == 6)
+        {
+            // Older model with only look and blink, without eyebrow and eye wide.
+            // We need to convert it to the new format by adding default values for the missing expressions.
+            inferenceResult = new float[]
+            {
+                inferenceResult[0], // left pitch
+                inferenceResult[1], // left yaw
+                inferenceResult[2], // left lid
+                0,                   // left eyebrow (default value)
+                0,                   // left eye wide (default value)
+                inferenceResult[3], // right pitch
+                inferenceResult[4], // right yaw
+                inferenceResult[5], // right lid
+                0,                   // right eyebrow (default value)
+                0                    // right eye wide (default value)
+            };
+        }
 
         if (Filter != null)
         {

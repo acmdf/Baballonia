@@ -54,10 +54,33 @@ public class EyePipelineManager
 
     public async Task LoadInferenceAsync()
     {
-        await Task.Run(CreateInference);
+        var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel");
+        if (eyeModelName != null && eyeModelName.EndsWith(".bin.gz", StringComparison.OrdinalIgnoreCase))
+        {
+            await Task.Run(LoadRustInference);
+            return;
+        }
+
+        var inf = await Task.Run(LoadOnnxInference);
+        _pipeline.InferenceService = inf;
     }
 
-    private void CreateInference()
+    private DefaultInferenceRunner LoadOnnxInference()
+    {
+        const string defaultEyeModelName = "eyeModel.onnx";
+        var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel", defaultEyeModelName);
+        var eyeModelPath = Path.Combine(AppContext.BaseDirectory, eyeModelName);
+
+        if (File.Exists(eyeModelPath)) return _inferenceFactory.Create(eyeModelPath);
+        _logger.LogError("{} Does not exists, Loading default...", eyeModelPath);
+
+        eyeModelName = defaultEyeModelName;
+        eyeModelPath = Path.Combine(AppContext.BaseDirectory, eyeModelName);
+
+        return _inferenceFactory.Create(eyeModelPath);
+    }
+
+    private void LoadRustInference()
     {
         var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel");
         if (eyeModelName != null)
