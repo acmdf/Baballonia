@@ -14,19 +14,19 @@ using OverlaySDK.Packets;
 
 namespace Baballonia.Desktop.Calibration;
 
-public partial class RustTrainerService(ILogger<TrainerService> logger) : ITrainerService
+public partial class RustTrainerService : ITrainerService
 {
     private readonly object _lock = new();
 
     public event Action<TrainerProgressReportPacket>? OnProgress;
 
     static event Action<TrainerProgressReportPacket>? GlobalProgress;
-    static TaskCompletionSource<bool> tcs = null;
+    static TaskCompletionSource<bool>? tcs;
 
     [UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvCdecl) })]
     static void HandleProgress(TrainingDataCallback data)
     {
-        logger.LogInformation($"Recieved {data.callback_type}: {data.low}/{data.high} ({data.loss})");
+        Console.WriteLine($"Recieved {data.callback_type}: {data.low}/{data.high} ({data.loss})");
         TrainerProgressReportPacket progress;
         if (data.callback_type == CallbackType.Batch)
         {
@@ -37,7 +37,13 @@ public partial class RustTrainerService(ILogger<TrainerService> logger) : ITrain
         }
         else
         {
-            tcs.TrySetResult(true);
+            if (tcs != null)
+            {
+                tcs.TrySetResult(true);
+            } else
+            {
+                Console.WriteLine("tcs is null when trying to set result");
+            }
             return;
         }
 
@@ -73,7 +79,7 @@ public partial class RustTrainerService(ILogger<TrainerService> logger) : ITrain
 
     public Task WaitAsync()
     {
-        return tcs.Task;
+        return tcs != null ? tcs.Task : Task.CompletedTask;
     }
 
     public void Dispose()

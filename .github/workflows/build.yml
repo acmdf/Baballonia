@@ -57,7 +57,7 @@ jobs:
       - name: Build Rust trainer
         run: |
           cd src/babble_trainer
-          cargo build --release
+          cargo build --release --lib
 
       #- name: Install dependencies
       #  run: |
@@ -107,7 +107,7 @@ jobs:
       - name: Build Rust trainer
         run: |
           cd src/babble_trainer
-          cargo build --release
+          cargo build --release --lib
 
       - name: Build project
         run: |
