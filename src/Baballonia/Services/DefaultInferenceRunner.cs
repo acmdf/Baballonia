@@ -126,18 +126,7 @@ public class DefaultInferenceRunner(ILoggerFactory loggerFactory) : IInferenceRu
         }
 
         // And, if CUDA fails (or we have an AMD card)
-        // Try one more time with MiGraphX/ROCm
-        try
-        {
-            sessionOptions.AppendExecutionProvider_ROCm();
-            _logger.LogInformation("Initialized ExecutionProvider: ROCm for {ModelName}", modelName);
-            return;
-        }
-        catch (Exception)
-        {
-            _logger.LogWarning("Failed to create ROCm Execution Provider.");
-        }
-
+        // Try one more time with MiGraphX
         try
         {
             sessionOptions.AppendExecutionProvider_MIGraphX();
