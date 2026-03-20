@@ -51,6 +51,8 @@ jobs:
 
       - name: Setup Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          rust-src-dir: src/babble_trainer
 
       - name: Build Rust trainer
         run: |
@@ -99,6 +101,8 @@ jobs:
 
       - name: Setup Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          rust-src-dir: src/babble_trainer
 
       - name: Build Rust trainer
         run: |
