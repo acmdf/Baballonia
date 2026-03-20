@@ -66,13 +66,26 @@ public class OverlayTrainerService(
             await calibrationStep.ExecuteAsync(messageDispatcher, _tokenSource.Token);
         }
 
-        var srcPath = Path.Combine(Utils.ModelDataDirectory, "tuned_temporal_eye_tracking_latest.onnx");
+        var srcPath = Path.Combine(Utils.ModelDataDirectory, "tuned_temporal_eye_tracking_latest");
         var destPath = Path.Combine(Utils.ModelsDirectory,
-            $"tuned_temporal_eye_tracking_{DateTime.Now:yyyyMMdd_HHmmss}.onnx");
+            $"tuned_temporal_eye_tracking_{DateTime.Now:yyyyMMdd_HHmmss}");
 
-        File.Move(srcPath, destPath);
+        if (File.Exists(destPath + ".bin.gz"))
+        {
+            File.Move(srcPath + ".bin.gz", destPath + ".bin.gz");
+            File.Move(srcPath + "_config.json", destPath + "_config.json");
 
-        localSettingsService.SaveSetting("EyeHome_EyeModel", destPath);
+            localSettingsService.SaveSetting("EyeHome_EyeModel", destPath + ".bin.gz");
+        } else if (File.Exists(destPath + ".onnx"))
+        {
+            File.Move(srcPath + ".onnx", destPath + ".onnx");
+
+            localSettingsService.SaveSetting("EyeHome_EyeModel", destPath + ".onnx");
+        } else
+        {
+            return (false, "Trained model not found");
+        }
+
         await eyePipelineManager.LoadInferenceAsync();
 
         if (localSettingsService.ReadSetting<bool>("AppSettings_ShareEyeData"))

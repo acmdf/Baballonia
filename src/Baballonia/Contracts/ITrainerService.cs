@@ -7,7 +7,7 @@ namespace Baballonia.Contracts;
 public interface ITrainerService : IDisposable
 {
     public event Action<TrainerProgressReportPacket>? OnProgress;
-    public void RunTraining(string usercalbinPath, string outputfilePath);
+    public Task RunTraining(string usercalbinPath, string outputfilePath);
 
     public Task WaitAsync();
 }

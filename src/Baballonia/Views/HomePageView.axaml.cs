@@ -15,9 +15,17 @@ namespace Baballonia.Views;
 
 public partial class HomePageView : ViewBase
 {
+    private static readonly FilePickerFileType AllFiles = new("All Files")
+    {
+        Patterns = ["*.onnx", "*.bin.gz"],
+    };
     private static readonly FilePickerFileType OnnxAll = new("ONNX Models")
     {
         Patterns = ["*.onnx"],
+    };
+    private static readonly FilePickerFileType RustTrainedModels = new("Rust-Trained Models")
+    {
+        Patterns = ["*.bin.gz"],
     };
 
     private bool _isLayoutUpdating;
@@ -263,7 +271,7 @@ public partial class HomePageView : ViewBase
             Title = "Select ONNX Model",
             AllowMultiple = false,
             SuggestedStartLocation = suggestedStartLocation, // Falls back to desktop if Models folder hasn't been created yet
-            FileTypeFilter = [OnnxAll]
+            FileTypeFilter = [AllFiles, OnnxAll, RustTrainedModels],
         })!;
 
         if (file.Count == 0) return;

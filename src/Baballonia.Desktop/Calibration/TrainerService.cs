@@ -81,7 +81,7 @@ public partial class TrainerService(ILogger<TrainerService> logger) : ITrainerSe
             return;
     }
 
-    public void RunTraining(string usercalbinPath, string outputfilePath)
+    public async Task RunTraining(string usercalbinPath, string outputfilePath)
     {
         if (!File.Exists(usercalbinPath))
             throw new FileNotFoundException(usercalbinPath + " not found");

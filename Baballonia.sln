@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11605.240 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Baballonia", "src\Baballonia\Baballonia.csproj", "{00505DCC-588E-4E46-8F91-2AF6A88CBC78}"
 EndProject
@@ -46,6 +46,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baballonia.CaptureBin.IO", "src\Baballonia.CaptureBin.IO\Baballonia.CaptureBin.IO.csproj", "{8D298C1C-774E-4BF0-A107-D5D3985C7A9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baballonia.LibV4L2Capture", "src\Baballonia.LibV4L2Capture\Baballonia.LibV4L2Capture.csproj", "{02E9F6A2-A443-491D-93FF-6F002F3C494F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "babble_trainer", "src\babble_trainer\bindings\bindings.csproj", "{692165EE-1668-066F-9D57-CC06413C6A55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +128,10 @@ Global
 		{02E9F6A2-A443-491D-93FF-6F002F3C494F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02E9F6A2-A443-491D-93FF-6F002F3C494F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02E9F6A2-A443-491D-93FF-6F002F3C494F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692165EE-1668-066F-9D57-CC06413C6A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692165EE-1668-066F-9D57-CC06413C6A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692165EE-1668-066F-9D57-CC06413C6A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692165EE-1668-066F-9D57-CC06413C6A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

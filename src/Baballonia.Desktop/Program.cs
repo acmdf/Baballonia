@@ -44,7 +44,7 @@ sealed class Program
         App.RegisterPlatformSpecificServices(collection =>
         {
             collection.AddSingleton<IOverlayProgram, OverlayProgram>();
-            collection.AddSingleton<ITrainerService, TrainerService>();
+            collection.AddSingleton<ITrainerService, RustTrainerService>();
             collection.AddSingleton<EyeCaptureStepFactory>();
             collection.AddSingleton<EyeCalibration>();
         });

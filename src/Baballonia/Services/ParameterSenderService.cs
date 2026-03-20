@@ -32,14 +32,14 @@ public class ParameterSenderService : BackgroundService
         { "LeftEyeX", "/LeftEyeX" },
         { "LeftEyeY", "/LeftEyeY" },
         { "LeftEyeLid", "/LeftEyeLid" },
-        //{ "LeftEyeWiden", "/LeftEyeWiden" },
-        //{ "LeftEyeLower", "/LeftEyeLower" },
+        { "LeftEyeLower", "/LeftEyeLower" },
+        { "LeftEyeWiden", "/LeftEyeWiden" },
         //{ "LeftEyeBrow", "/LeftEyeBrow" },
         { "RightEyeX", "/RightEyeX" },
         { "RightEyeY", "/RightEyeY" },
         { "RightEyeLid", "/RightEyeLid" },
-        //{ "RightEyeWiden", "/RightEyeWiden" },
-        //{ "RightEyeLower", "/RightEyeLower" },
+        { "RightEyeLower", "/RightEyeLower" },
+        { "RightEyeWiden", "/RightEyeWiden" },
         //{ "RightEyeBrow", "/RightEyeBrow" },
     };
 

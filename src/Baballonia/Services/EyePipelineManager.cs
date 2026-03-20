@@ -54,11 +54,18 @@ public class EyePipelineManager
 
     public async Task LoadInferenceAsync()
     {
-        var inf = await Task.Run(CreateInference);
+        var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel");
+        if (eyeModelName != null && eyeModelName.EndsWith(".bin.gz", StringComparison.OrdinalIgnoreCase))
+        {
+            await Task.Run(LoadRustInference);
+            return;
+        }
+
+        var inf = await Task.Run(LoadOnnxInference);
         _pipeline.InferenceService = inf;
     }
 
-    private DefaultInferenceRunner CreateInference()
+    private DefaultInferenceRunner LoadOnnxInference()
     {
         const string defaultEyeModelName = "eyeModel.onnx";
         var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel", defaultEyeModelName);
@@ -73,10 +80,23 @@ public class EyePipelineManager
         return _inferenceFactory.Create(eyeModelPath);
     }
 
-
-    public void LoadInference()
+    private void LoadRustInference()
     {
-        _pipeline.InferenceService = CreateInference();
+        var eyeModelName = _localSettings.ReadSetting<string>("EyeHome_EyeModel");
+        if (eyeModelName != null)
+        {
+            var eyeModelPath = Path.Combine(AppContext.BaseDirectory, eyeModelName);
+
+            var load_error = _pipeline.LoadInference(eyeModelPath);
+
+            if (load_error != null)
+            {
+                _logger.LogError($"Inference error: {load_error}");
+            } else
+            {
+                _logger.LogInformation($"Inference loaded from {eyeModelPath}");
+            }
+        }
     }
 
     public void LoadFilter()
