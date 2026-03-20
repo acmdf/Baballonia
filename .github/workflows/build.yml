@@ -49,6 +49,14 @@ jobs:
       - name: Download dependencies
         run: ./download_dependencies.sh
 
+      - name: Setup Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - name: Build Rust trainer
+        run: |
+          cd src/babble_trainer
+          cargo build --release
+
       #- name: Install dependencies
       #  run: |
       #    dotnet tool install -g vpk
@@ -88,6 +96,14 @@ jobs:
       - name: Download dependencies
         shell: pwsh
         run: ./download_dependencies.ps1
+
+      - name: Setup Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - name: Build Rust trainer
+        run: |
+          cd src/babble_trainer
+          cargo build --release
 
       - name: Build project
         run: |
