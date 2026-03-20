@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 namespace Baballonia;
 
-public class App : Application
+public partial class App : Application
 {
     private IHost? _host;
     private bool IsTeardDown = false;
@@ -51,7 +51,6 @@ public class App : Application
     {
         _platformSpecifficServices = configure;
     }
-
 
     public override void Initialize()
     {
@@ -226,6 +225,9 @@ public class App : Application
         switch (ApplicationLifetime)
         {
             case IClassicDesktopStyleApplicationLifetime desktop:
+                var languageService = Ioc.Default.GetRequiredService<ILanguageSelectorService>();
+                InitTray();
+                languageService.OnLanguageUpdated += () => { Dispatcher.UIThread.Post(RefreshTrayStrings); };
                 desktop.MainWindow = new MainWindow(vm);
                 desktop.MainWindow.Loaded += (_, _) => { desktop.MainWindow.ShowOnboardingIfNeeded(); };
                 desktop.Exit += (s, e) =>
@@ -254,13 +256,5 @@ public class App : Application
 
         mainService?.Teardown();
         IsTeardDown = true;
-    }
-
-    private void OnTrayShutdownClicked(object? sender, EventArgs e)
-    {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            desktop.Shutdown();
-        }
     }
 }
