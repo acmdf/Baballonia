@@ -297,8 +297,8 @@ public class TrainerCalibrationStep(ITrainerService overlayTrainer) : ICalibrati
         dispatcher.Dispatch(new RunVariableLenghtRoutinePacket(Name, TimeSpan.FromSeconds(120)));
         var onProgressHandler = (TrainerProgressReportPacket packet) => { dispatcher.Dispatch(packet); };
         overlayTrainer.OnProgress += onProgressHandler;
-        overlayTrainer.RunTraining(Path.Combine(Utils.ModelDataDirectory, "user_cal.bin"),
-            Path.Combine(Utils.ModelDataDirectory, "tuned_temporal_eye_tracking_latest.onnx"));
+        await overlayTrainer.RunTraining(Path.Combine(Utils.ModelDataDirectory, "user_cal.bin"),
+            Path.Combine(Utils.ModelDataDirectory, "tuned_temporal_eye_tracking_latest"));
         await overlayTrainer.WaitAsync();
 
         overlayTrainer.OnProgress -= onProgressHandler;
