@@ -99,6 +99,11 @@
                   <PathIcon Data="{StaticResource HeadsetVrRegular}" />
                 </MenuItem.Icon>
               </MenuItem>
+              <MenuItem Click="OnCalibrationMenuItemClick" x:Name="TrainOnly" Header="Retrain Model">
+                <MenuItem.Icon>
+                  <PathIcon Data="{StaticResource HeadsetVrRegular}" />
+                </MenuItem.Icon>
+              </MenuItem>
 
             </MenuFlyout>
           </SplitButton.Flyout>

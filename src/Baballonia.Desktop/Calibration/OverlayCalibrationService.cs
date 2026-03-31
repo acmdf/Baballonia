@@ -59,6 +59,7 @@ public class OverlayTrainerService(
             CalibrationRoutine.Routines.BasicCalibrationNoTutorial => eyeCalibration.BasicAllCalibrationQuick(),
             CalibrationRoutine.Routines.GazeOnly => eyeCalibration.GazeCalibration(),
             CalibrationRoutine.Routines.BlinkOnly => eyeCalibration.BlinkCalibration(),
+            CalibrationRoutine.Routines.TrainOnly => eyeCalibration.TrainCalibration(),
             _ => eyeCalibration.BasicAllCalibration()
         };
         foreach (var calibrationStep in steps)

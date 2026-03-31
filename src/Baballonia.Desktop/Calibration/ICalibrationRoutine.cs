@@ -453,4 +453,16 @@ public class EyeCalibration(
 
         return steps;
     }
+
+    public IEnumerable<ICalibrationStep> TrainCalibration()
+    {
+        List<ICalibrationStep> steps =
+        [
+            new TrainerCalibrationStep(trainer),
+            new CommandDispatchStep("close")
+
+        ];
+
+        return steps;
+    }
 }
