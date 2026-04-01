@@ -138,6 +138,8 @@ public partial class App : Application
             services.AddTransient<CalibrationView>();
             services.AddTransient<OutputPageViewModel>();
             services.AddTransient<OutputPageView>();
+            services.AddTransient<EyeTrainingViewModel>();
+            services.AddTransient<EyeTrainingView>();
             services.AddTransient<AppSettingsViewModel>();
             services.AddTransient<AppSettingsView>();
             services.AddTransient<AboutPageViewModel>();

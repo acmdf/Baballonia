@@ -107,6 +107,9 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
+      <Compile Update="Views\EyeTrainingView.axaml.cs">
+        <DependentUpon>EyeTrainingView.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 

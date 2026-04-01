@@ -16,6 +16,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 using OpenCvSharp;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -251,21 +252,21 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
                 switch (Camera)
                 {
                     case Camera.Left:
-                    {
-                        var leftHalf = new OpenCvSharp.Rect(0, 0, width / 2, height);
-                        var leftRoi = new Mat(image, leftHalf);
+                        {
+                            var leftHalf = new OpenCvSharp.Rect(0, 0, width / 2, height);
+                            var leftRoi = new Mat(image, leftHalf);
 
 
-                        UpdateBitmap(leftRoi);
-                        break;
-                    }
+                            UpdateBitmap(leftRoi);
+                            break;
+                        }
                     case Camera.Right:
-                    {
-                        var rightHalf = new OpenCvSharp.Rect(width / 2, 0, width / 2, height);
-                        var rightRoi = new Mat(image, rightHalf);
-                        UpdateBitmap(rightRoi);
-                        break;
-                    }
+                        {
+                            var rightHalf = new OpenCvSharp.Rect(width / 2, 0, width / 2, height);
+                            var rightRoi = new Mat(image, rightHalf);
+                            UpdateBitmap(rightRoi);
+                            break;
+                        }
                 }
             }
             else if (channels == 2)
@@ -608,7 +609,7 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
         await StartCameraWithMaximization(model, startMaximized: true);
     }
 
-	private async Task StartCameraWithMaximization(CameraControllerModel model, bool startMaximized)
+    private async Task StartCameraWithMaximization(CameraControllerModel model, bool startMaximized)
     {
         try
         {
@@ -682,7 +683,7 @@ public partial class HomePageViewModel : ViewModelBase, IDisposable
             {
                 try
                 {
-                    return await _vrOverlay.EyeTrackingCalibrationRequested(RequestedVRCalibration);
+                    return await _vrOverlay.EyeTrackingCalibrationRequested(RequestedVRCalibration, new List<string> { });
                 }
                 catch (Exception ex)
                 {

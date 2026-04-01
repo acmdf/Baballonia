@@ -80,7 +80,7 @@ public class PositionalBinCollector(uint headerFlags)
             _frames.Clear();
         }
 
-        CaptureBin.IO.CaptureBin.WriteAll(Path.Combine(Utils.ModelDataDirectory, path), copy);
+        CaptureBin.IO.CaptureBin.WriteAll(path, copy);
     }
 }
 public class BinCollector(uint headerFlags)
@@ -149,6 +149,6 @@ public class BinCollector(uint headerFlags)
             _frames.Clear();
         }
 
-        CaptureBin.IO.CaptureBin.WriteAll(Path.Combine(Utils.ModelDataDirectory, path), copy);
+        CaptureBin.IO.CaptureBin.WriteAll(path, copy);
     }
 }

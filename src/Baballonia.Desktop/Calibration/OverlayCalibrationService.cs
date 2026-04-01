@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using OverlaySDK;
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ public class OverlayTrainerService(
     }
 
     public async Task<(bool success, string status)> EyeTrackingCalibrationRequested(
-        CalibrationRoutine.Routines routine)
+        CalibrationRoutine.Routines routine, List<string> args)
     {
         if (!overlayProgram.CanStart())
         {
@@ -57,9 +58,8 @@ public class OverlayTrainerService(
         {
             CalibrationRoutine.Routines.BasicCalibration => eyeCalibration.BasicAllCalibration(),
             CalibrationRoutine.Routines.BasicCalibrationNoTutorial => eyeCalibration.BasicAllCalibrationQuick(),
-            CalibrationRoutine.Routines.GazeOnly => eyeCalibration.GazeCalibration(),
-            CalibrationRoutine.Routines.BlinkOnly => eyeCalibration.BlinkCalibration(),
-            CalibrationRoutine.Routines.TrainOnly => eyeCalibration.TrainCalibration(),
+            CalibrationRoutine.Routines.TutorialStep => eyeCalibration.GetCalibrationStep(args[0], args[1]),
+            CalibrationRoutine.Routines.TrainModel => eyeCalibration.TrainCalibration(args),
             _ => eyeCalibration.BasicAllCalibration()
         };
         foreach (var calibrationStep in steps)
@@ -67,32 +67,37 @@ public class OverlayTrainerService(
             await calibrationStep.ExecuteAsync(messageDispatcher, _tokenSource.Token);
         }
 
-        var srcPath = Path.Combine(Utils.ModelDataDirectory, "tuned_temporal_eye_tracking_latest");
-        var destPath = Path.Combine(Utils.ModelsDirectory,
-            $"tuned_temporal_eye_tracking_{DateTime.Now:yyyyMMdd_HHmmss}");
-
-        if (File.Exists(destPath + ".bin.gz"))
+        if (routine != CalibrationRoutine.Routines.TutorialStep)
         {
-            File.Move(srcPath + ".bin.gz", destPath + ".bin.gz");
-            File.Move(srcPath + "_config.json", destPath + "_config.json");
+            var srcPath = Path.Combine(Utils.ModelDataDirectory, "tuned_temporal_eye_tracking_latest");
+            var destPath = Path.Combine(Utils.ModelsDirectory,
+                $"tuned_temporal_eye_tracking_{DateTime.Now:yyyyMMdd_HHmmss}");
 
-            localSettingsService.SaveSetting("EyeHome_EyeModel", destPath + ".bin.gz");
-        } else if (File.Exists(destPath + ".onnx"))
-        {
-            File.Move(srcPath + ".onnx", destPath + ".onnx");
+            if (File.Exists(destPath + ".bin.gz"))
+            {
+                File.Move(srcPath + ".bin.gz", destPath + ".bin.gz");
+                File.Move(srcPath + "_config.json", destPath + "_config.json");
 
-            localSettingsService.SaveSetting("EyeHome_EyeModel", destPath + ".onnx");
-        } else
-        {
-            return (false, "Trained model not found");
-        }
+                localSettingsService.SaveSetting("EyeHome_EyeModel", destPath + ".bin.gz");
+            }
+            else if (File.Exists(destPath + ".onnx"))
+            {
+                File.Move(srcPath + ".onnx", destPath + ".onnx");
 
-        await eyePipelineManager.LoadInferenceAsync();
+                localSettingsService.SaveSetting("EyeHome_EyeModel", destPath + ".onnx");
+            }
+            else
+            {
+                return (false, "Trained model not found");
+            }
 
-        if (localSettingsService.ReadSetting<bool>("AppSettings_ShareEyeData"))
-        {
-            var userCal = Path.Combine(Utils.ModelDataDirectory, "user_cal.bin");
-            await dataUploaderService.UploadDataAsync(userCal);
+            await eyePipelineManager.LoadInferenceAsync();
+
+            if (localSettingsService.ReadSetting<bool>("AppSettings_ShareEyeData"))
+            {
+                var userCal = Path.Combine(Utils.ModelDataDirectory, "user_cal.bin");
+                await dataUploaderService.UploadDataAsync(userCal);
+            }
         }
 
         await overlayProgram.WaitForExitAsync();

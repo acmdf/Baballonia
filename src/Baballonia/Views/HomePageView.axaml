@@ -89,22 +89,6 @@
                   <PathIcon Data="{StaticResource HeadsetVrRegular}" />
                 </MenuItem.Icon>
               </MenuItem>
-              <MenuItem Click="OnCalibrationMenuItemClick" x:Name="GazeOnly" Header="Gaze Calibration">
-                <MenuItem.Icon>
-                  <PathIcon Data="{StaticResource HeadsetVrRegular}" />
-                </MenuItem.Icon>
-              </MenuItem>
-              <MenuItem Click="OnCalibrationMenuItemClick" x:Name="BlinkOnly" Header="Blink Calibration">
-                <MenuItem.Icon>
-                  <PathIcon Data="{StaticResource HeadsetVrRegular}" />
-                </MenuItem.Icon>
-              </MenuItem>
-              <MenuItem Click="OnCalibrationMenuItemClick" x:Name="TrainOnly" Header="Retrain Model">
-                <MenuItem.Icon>
-                  <PathIcon Data="{StaticResource HeadsetVrRegular}" />
-                </MenuItem.Icon>
-              </MenuItem>
-
             </MenuFlyout>
           </SplitButton.Flyout>
         </SplitButton>

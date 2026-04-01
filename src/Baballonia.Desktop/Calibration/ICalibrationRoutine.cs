@@ -159,7 +159,7 @@ public abstract class BaseCaptureStep(string name, uint flags, TimeSpan time) : 
     }
 }
 
-public class GazeCaptureStep(IEyePipelineEventBus bus, TimeSpan time) : BasePositionalAwareEyeCaptureStep(bus, "gaze",
+public class GazeCaptureStep(IEyePipelineEventBus bus, TimeSpan time, string fileName) : BasePositionalAwareEyeCaptureStep(bus, "gaze", fileName,
     CaptureFlags.FLAG_GOOD_DATA |
     CaptureFlags.FLAG_IN_MOVEMENT |
     CaptureFlags.FLAG_VERSION_BIT1 |
@@ -168,7 +168,7 @@ public class GazeCaptureStep(IEyePipelineEventBus bus, TimeSpan time) : BasePosi
     private Stopwatch _posDataTimer = new();
     private readonly TimeSpan _posDataTimeout = TimeSpan.FromSeconds(0.2);
 
-    public GazeCaptureStep(IEyePipelineEventBus bus) : this(bus, TimeSpan.FromSeconds(120))
+    public GazeCaptureStep(IEyePipelineEventBus bus, string fileName) : this(bus, TimeSpan.FromSeconds(120), fileName)
     {
     }
 
@@ -204,6 +204,7 @@ public class GazeCaptureStep(IEyePipelineEventBus bus, TimeSpan time) : BasePosi
 public class BasePositionalAwareEyeCaptureStep(
     IEyePipelineEventBus eyePipelineEvent,
     string name,
+    string fileName,
     uint flags,
     TimeSpan time)
     : PositionalAwareCaptureStep(name, flags, time)
@@ -224,13 +225,14 @@ public class BasePositionalAwareEyeCaptureStep(
         if (ct.IsCancellationRequested)
             return;
 
-        PositionalBinCollector.WriteBin(Name + ".bin");
+        PositionalBinCollector.WriteBin(fileName);
     }
 }
 
 public class BaseEyeCaptureStep(
     IEyePipelineEventBus eyePipelineEvent,
     string name,
+    string fileName,
     uint flags,
     TimeSpan time,
     float lid = 0,
@@ -257,7 +259,7 @@ public class BaseEyeCaptureStep(
         if (ct.IsCancellationRequested)
             return;
 
-        BinCollector.WriteBin(Name + ".bin");
+        BinCollector.WriteBin(fileName);
     }
 
     public override Frame AddFrame(Mat[] images)
@@ -307,14 +309,14 @@ public class TrainerCalibrationStep(ITrainerService overlayTrainer) : ICalibrati
 
 public class EyeCaptureStepFactory(IEyePipelineEventBus eyePipelineEvent)
 {
-    public BaseEyeCaptureStep Create(string name, uint flags, TimeSpan time,
+    public BaseEyeCaptureStep Create(string name, string fileName, uint flags, TimeSpan time,
         float lid = 0,
         float browRaise = 0,
         float browAngry = 0,
         float widen = 0,
         float squint = 0,
         float dilate = 0) =>
-        new(eyePipelineEvent, name, flags, time, lid, browRaise, browAngry, widen, squint, dilate);
+        new(eyePipelineEvent, name, fileName, flags, time, lid, browRaise, browAngry, widen, squint, dilate);
 }
 
 public class MergeBinsStep(params string[] binNames) : ICalibrationStep
@@ -330,8 +332,7 @@ public class MergeBinsStep(params string[] binNames) : ICalibrationStep
     private static void MergeBins(string result, params string[] inputs)
     {
         var resultPath = Path.Combine(Utils.ModelDataDirectory, result);
-        var inputPaths = inputs.Select(i => Path.Combine(Utils.ModelDataDirectory, i)).ToArray();
-        CaptureBin.IO.CaptureBin.Concatenate(resultPath, inputPaths);
+        CaptureBin.IO.CaptureBin.Concatenate(resultPath, inputs);
     }
 }
 
@@ -340,14 +341,69 @@ public class EyeCalibration(
     ITrainerService trainer,
     IEyePipelineEventBus eyePipelineEventBus)
 {
+    public IEnumerable<ICalibrationStep> GetCalibrationStep(string stepName, string fileName)
+    {
+        return stepName switch
+        {
+            "gaze" => new List<ICalibrationStep>
+            {
+                new BaseTutorialStep("gazetutorial"),
+                new GazeCaptureStep(eyePipelineEventBus, fileName),
+                new CommandDispatchStep("close")
+            },
+            "blink" => new List<ICalibrationStep>
+            {
+                new BaseTutorialStep("blinktutorial", TimeSpan.FromSeconds(10)),
+                eyeCaptureStepFactory.Create(stepName, fileName,
+                    CaptureFlags.FLAG_GOOD_DATA |
+                    CaptureFlags.FLAG_IN_MOVEMENT |
+                    CaptureFlags.FLAG_VERSION_BIT1,
+                    TimeSpan.FromSeconds(20)
+                ),
+                new CommandDispatchStep("close")
+            },
+            "widen" => new List<ICalibrationStep>
+            {
+                new BaseTutorialStep("widentutorial", TimeSpan.FromSeconds(10)),
+                eyeCaptureStepFactory.Create(stepName,fileName,
+                    CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20), widen: 1, lid: 1),
+                new CommandDispatchStep("close")
+            },
+            "squint" => new List<ICalibrationStep>
+            {
+                new BaseTutorialStep("squinttutorial", TimeSpan.FromSeconds(10)),
+                eyeCaptureStepFactory.Create(stepName,fileName,
+                    CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20), squint: 1, lid: 1),
+                new CommandDispatchStep("close")
+            },
+            "brow" => new List<ICalibrationStep>
+            {
+                new BaseTutorialStep("browtutorial", TimeSpan.FromSeconds(10)),
+                eyeCaptureStepFactory.Create(stepName, fileName,
+                    CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20), browAngry: 1, lid: 1),
+                new CommandDispatchStep("close")
+            }
+        };
+    }
+
+    public IEnumerable<ICalibrationStep> TrainCalibration(List<string> args)
+    {
+        return new List<ICalibrationStep>
+        {
+            new MergeBinsStep(args.ToArray()),
+            new TrainerCalibrationStep(trainer),
+            new CommandDispatchStep("close")
+        };
+    }
+
     public IEnumerable<ICalibrationStep> BasicAllCalibration()
     {
         List<ICalibrationStep> steps =
         [
             new BaseTutorialStep("gazetutorial"),
-            new GazeCaptureStep(eyePipelineEventBus),
+            new GazeCaptureStep(eyePipelineEventBus, Path.Combine(Utils.ModelDataDirectory, "gaze.bin")),
             new BaseTutorialStep("blinktutorial", TimeSpan.FromSeconds(10)),
-            eyeCaptureStepFactory.Create("blink",
+            eyeCaptureStepFactory.Create("blink", Path.Combine(Utils.ModelDataDirectory, "blink.bin"),
                 CaptureFlags.FLAG_GOOD_DATA |
                 CaptureFlags.FLAG_IN_MOVEMENT |
                 CaptureFlags.FLAG_VERSION_BIT1,
@@ -355,22 +411,22 @@ public class EyeCalibration(
             ),
 
              new BaseTutorialStep("widentutorial", TimeSpan.FromSeconds(10)),
-             eyeCaptureStepFactory.Create("widen",
+             eyeCaptureStepFactory.Create("widen", Path.Combine(Utils.ModelDataDirectory, "widen.bin"),
                  CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20), widen: 1, lid: 1),
              
              new BaseTutorialStep("squinttutorial", TimeSpan.FromSeconds(10)),
-             eyeCaptureStepFactory.Create("squint",
+             eyeCaptureStepFactory.Create("squint", Path.Combine(Utils.ModelDataDirectory, "squint.bin"),
                  CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20), squint: 1, lid: 1),
              
              new BaseTutorialStep("browtutorial", TimeSpan.FromSeconds(10)),
-             eyeCaptureStepFactory.Create("brow",
+             eyeCaptureStepFactory.Create("brow", Path.Combine(Utils.ModelDataDirectory, "brow.bin"),
                  CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20), browAngry: 1, lid: 1),
             // steps.Add(new BaseTutorialStep("covergencetutorial"));
             // steps.Add(_eyeCaptureStepFactory.Create("covergence",
             //     CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_WHATEVER_NOT_IMPLEMENTED));
 
-            new MergeBinsStep("gaze.bin", "blink.bin", "widen.bin", "squint.bin", "brow.bin"),
-            //new MergeBinsStep("gaze.bin", "blink.bin"),
+            new MergeBinsStep(Path.Combine(Utils.ModelDataDirectory, "gaze.bin"), Path.Combine(Utils.ModelDataDirectory, "blink.bin"), Path.Combine(Utils.ModelDataDirectory, "widen.bin"), Path.Combine(Utils.ModelDataDirectory, "squint.bin"), Path.Combine(Utils.ModelDataDirectory, "brow.bin")),
+            //new MergeBinsStep(Path.Combine(Utils.ModelDataDirectory, "gaze.bin"), Path.Combine(Utils.ModelDataDirectory, "blink.bin")),
             new TrainerCalibrationStep(trainer),
             new CommandDispatchStep("close")
 
@@ -384,9 +440,9 @@ public class EyeCalibration(
         List<ICalibrationStep> steps =
         [
             new BaseTutorialStep("gazetutorialshort", TimeSpan.FromSeconds(5)),
-            new GazeCaptureStep(eyePipelineEventBus, TimeSpan.FromSeconds(10)),
+            new GazeCaptureStep(eyePipelineEventBus, Path.Combine(Utils.ModelDataDirectory, "gaze.bin")),
             new BaseTutorialStep("blinktutorial", TimeSpan.FromSeconds(4)),
-            eyeCaptureStepFactory.Create("blink",
+            eyeCaptureStepFactory.Create("blink", Path.Combine(Utils.ModelDataDirectory, "blink.bin"),
                 CaptureFlags.FLAG_GOOD_DATA |
                 CaptureFlags.FLAG_IN_MOVEMENT |
                 CaptureFlags.FLAG_VERSION_BIT1 |
@@ -395,69 +451,19 @@ public class EyeCalibration(
             ),
 
             new BaseTutorialStep("widentutorial", TimeSpan.FromSeconds(4)),
-            eyeCaptureStepFactory.Create("widen",
+            eyeCaptureStepFactory.Create("widen", Path.Combine(Utils.ModelDataDirectory, "widen.bin"),
                 CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20)),
             
             new BaseTutorialStep("squinttutorial", TimeSpan.FromSeconds(4)),
-            eyeCaptureStepFactory.Create("squint",
+            eyeCaptureStepFactory.Create("squint", Path.Combine(Utils.ModelDataDirectory, "squint.bin"),
                 CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20)),
             
             new BaseTutorialStep("browtutorial", TimeSpan.FromSeconds(4)),
-            eyeCaptureStepFactory.Create("brow",
+            eyeCaptureStepFactory.Create("brow", Path.Combine(Utils.ModelDataDirectory, "brow.bin"),
                 CaptureFlags.FLAG_GOOD_DATA | CaptureFlags.FLAG_VERSION_BIT1, TimeSpan.FromSeconds(20)),
 
-            new MergeBinsStep("gaze.bin", "blink.bin", "widen.bin", "squint.bin", "brow.bin"),
-            //new MergeBinsStep("gaze.bin", "blink.bin"),
-            new TrainerCalibrationStep(trainer),
-            new CommandDispatchStep("close")
-
-        ];
-
-        return steps;
-    }
-
-    public IEnumerable<ICalibrationStep> GazeCalibration()
-    {
-        List<ICalibrationStep> steps =
-        [
-            new BaseTutorialStep("gazetutorialshort", TimeSpan.FromSeconds(5)),
-            new GazeCaptureStep(eyePipelineEventBus),
-
-            new MergeBinsStep("gaze.bin", "blink.bin"),
-            new TrainerCalibrationStep(trainer),
-            new CommandDispatchStep("close")
-
-        ];
-
-        return steps;
-    }
-
-    public IEnumerable<ICalibrationStep> BlinkCalibration()
-    {
-        List<ICalibrationStep> steps =
-        [
-            new BaseTutorialStep("blinktutorial", TimeSpan.FromSeconds(4)),
-            eyeCaptureStepFactory.Create("blink",
-                CaptureFlags.FLAG_GOOD_DATA |
-                CaptureFlags.FLAG_IN_MOVEMENT |
-                CaptureFlags.FLAG_VERSION_BIT1 |
-                CaptureFlags.FLAG_ROUTINE_BIT1,
-                TimeSpan.FromSeconds(20)
-            ),
-
-            new MergeBinsStep("gaze.bin", "blink.bin"),
-            new TrainerCalibrationStep(trainer),
-            new CommandDispatchStep("close")
-
-        ];
-
-        return steps;
-    }
-
-    public IEnumerable<ICalibrationStep> TrainCalibration()
-    {
-        List<ICalibrationStep> steps =
-        [
+            new MergeBinsStep(Path.Combine(Utils.ModelDataDirectory, "gaze.bin"), Path.Combine(Utils.ModelDataDirectory, "blink.bin"), Path.Combine(Utils.ModelDataDirectory, "widen.bin"), Path.Combine(Utils.ModelDataDirectory, "squint.bin"), Path.Combine(Utils.ModelDataDirectory, "brow.bin")),
+            //new MergeBinsStep(Path.Combine(Utils.ModelDataDirectory, "gaze.bin"), Path.Combine(Utils.ModelDataDirectory, "blink.bin")),
             new TrainerCalibrationStep(trainer),
             new CommandDispatchStep("close")
 

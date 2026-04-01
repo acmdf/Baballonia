@@ -10,9 +10,8 @@ public static class CalibrationRoutine
     {
         BasicCalibration,
         BasicCalibrationNoTutorial,
-        GazeOnly,
-        BlinkOnly,
-        TrainOnly,
+        TutorialStep,
+        TrainModel,
     }
     public static readonly Dictionary<string, Routines> Map = Enum.GetValues<Routines>().ToDictionary(i => i.ToString(), i => i);
     /*

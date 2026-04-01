@@ -1,0 +1,114 @@
+<UserControl
+  d:DesignHeight="450"
+  d:DesignWidth="1200"
+  mc:Ignorable="d"
+  x:Class="Baballonia.Views.EyeTrainingView"
+  x:DataType="splitViewPane:EyeTrainingViewModel"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:controls="clr-namespace:Baballonia.Controls"
+  xmlns:converters="clr-namespace:Baballonia.Converters"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:splitViewPane="clr-namespace:Baballonia.ViewModels.SplitViewPane"
+  xmlns:system="clr-namespace:System;assembly=System.Runtime"
+  xmlns:utils="clr-namespace:Baballonia"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:assets="clr-namespace:Baballonia.Assets">
+
+
+  <ScrollViewer>
+    <StackPanel Classes="Page" Margin="16">
+
+      <StackPanel.Resources>
+        <converters:FileNameConverter x:Key="FileNameConverter" />
+        <converters:RadianDegreesConverter x:Key="RadianDegreesConverter" />
+        <converters:GammaConverter x:Key="GammaConverter" />
+      </StackPanel.Resources>
+
+      <Grid ColumnDefinitions="*,Auto,12,Auto,12,Auto" Margin="0,0,0,12">
+        <TextBlock
+          Classes="Header"
+          FontSize="28"
+          Grid.Column="0"
+          Text="Model Training" />
+
+        <Button
+          Padding="12,8"
+          Click="RefreshFiles"
+          Grid.Column="1">
+          <Button.Content>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <PathIcon Data="{StaticResource ArrowSyncRegular}" />
+              <TextBlock x:Name="RefreshFilesText" Text="Refresh Data" VerticalAlignment="Center" />
+            </StackPanel>
+          </Button.Content>
+        </Button>
+      </Grid>
+
+      <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <ItemsRepeater ItemsSource="{Binding CalibrationSteps}" Margin="0 20">
+          <ItemsRepeater.Layout>
+
+            <UniformGridLayout MinItemWidth="200" MinItemHeight="300" MinColumnSpacing="20" />
+          </ItemsRepeater.Layout>
+          <ItemsRepeater.ItemTemplate>
+            <DataTemplate>
+              <Border
+                Background="{DynamicResource SystemChromeMediumLowColor}"
+                CornerRadius="8"
+                Padding="16,16,16,16">
+                <Grid RowDefinitions="Auto, *, Auto">
+                  <TextBlock
+                    Grid.Row="0"
+                    FontSize="20"
+                    FontWeight="Medium"
+                    Margin="0,0,12,12"
+                    Text="{Binding Title}" />
+                  <ListBox
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding Files}"
+                    SelectedItem="{Binding SelectedFile}"
+                    SelectionMode="AlwaysSelected">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate>
+                        <TextBlock
+                          Text="{Binding ., Converter={StaticResource FileNameConverter}}" />
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                  <Button
+                    Grid.Row="2"
+                    Command="{Binding ReRecordCommand}"
+                    Content="Re-record"
+                    FontSize="13"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    Margin="0,8,0,0"
+                    Padding="12,8" />
+                </Grid>
+              </Border>
+            </DataTemplate>
+          </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
+      </ScrollViewer>
+
+      <Button
+        x:Name="RetrainButton"
+        Margin="24,24,24,24"
+        Padding="24,24"
+        FontSize="32"
+        HorizontalAlignment="Stretch"
+        Command="{Binding RetrainModelCommand}">
+        <Button.Content>
+          <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+            <PathIcon Data="{StaticResource ArrowSyncRegular}" />
+            <TextBlock Text="Retrain Model" VerticalAlignment="Center" />
+          </StackPanel>
+        </Button.Content>
+      </Button>
+
+    </StackPanel>
+  </ScrollViewer>
+
+</UserControl>

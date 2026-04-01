@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Baballonia.Contracts;
 using Baballonia.Helpers;
@@ -11,7 +12,7 @@ public class AndroidOverlayTrainerCombo : IVROverlay, IVRCalibrator, IDisposable
         return Task.CompletedTask;
     }
 
-    public Task<(bool success, string status)> EyeTrackingCalibrationRequested(CalibrationRoutine.Routines calibrationRoutine)
+    public Task<(bool success, string status)> EyeTrackingCalibrationRequested(CalibrationRoutine.Routines calibrationRoutine, List<string> args)
     {
         return Task.FromResult((true, "Not Supported"));
     }
